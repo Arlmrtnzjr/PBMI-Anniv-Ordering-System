@@ -102,7 +102,7 @@ body{background:radial-gradient(circle at 50% -10%,rgba(227,27,35,.18),transpare
 body::before{opacity:.16;background-image:radial-gradient(ellipse at 50% 100%,transparent 56%,rgba(244,235,216,.09) 57%,transparent 58%),radial-gradient(ellipse at 50% 100%,transparent 66%,rgba(244,235,216,.065) 67%,transparent 68%),radial-gradient(ellipse at 50% 100%,transparent 76%,rgba(244,235,216,.05) 77%,transparent 78%);background-size:110px 55px;background-position:0 0,55px 28px,0 55px}
 .header{background:rgba(5,16,31,.96);border-top:3px solid var(--verm);border-bottom:1px solid rgba(244,235,216,.10);box-shadow:0 10px 28px rgba(0,0,0,.34)}
 .header-inner{width:min(1160px,100%);padding:10px 16px}.brand{gap:12px}
-.brand-mark{width:154px;height:45px;border-radius:6px;background:#f4ebd8;display:grid;place-items:center;padding:5px 9px;box-shadow:0 0 0 1px rgba(227,27,35,.5),inset 0 0 0 1px rgba(7,24,46,.1)}
+.brand-mark{width:154px;height:45px;border-radius:7px;background:#07182e;display:grid;place-items:center;padding:5px 10px;border:1px solid rgba(244,235,216,.45);box-shadow:0 0 0 2px rgba(227,27,35,.18),0 8px 20px rgba(0,0,0,.28);overflow:hidden}.brand-mark::after{content:"";position:absolute}
 .brand-logo{display:block;width:100%;height:100%;object-fit:contain}.brand-title{font-family:Georgia,"Times New Roman",serif;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#f4ebd8}.brand-sub{color:#b9c4d1;letter-spacing:.18em}.header-chip{color:#f4ebd8;border-color:rgba(227,27,35,.55);background:rgba(227,27,35,.10)}
 main{width:min(1160px,100%);padding:28px 16px 76px}
 .card{background:linear-gradient(145deg,rgba(11,39,69,.97),rgba(7,27,49,.97));border:1px solid rgba(104,143,176,.24);box-shadow:var(--shadow);color:var(--ink)}
@@ -121,7 +121,7 @@ main{width:min(1160px,100%);padding:28px 16px 76px}
 .badge{background:#163654;color:#d4dde6;border-color:#2d4d69}.badge.ok{background:rgba(123,211,162,.12);color:#a5e5c0}.badge.red{background:rgba(227,27,35,.12);color:#ff8b8f}.badge.gold{background:rgba(214,179,106,.12);color:#e8cc8f}
 .choice,.person{background:linear-gradient(145deg,#0c2947,#092039);border-color:#2e4e6a;color:#f4ebd8}.choice:hover,.person:hover{border-color:#d15a5f}.choice.selected,.person.selected{border-color:var(--verm);background:linear-gradient(145deg,#2a1b28,#102941);box-shadow:0 0 0 2px rgba(227,27,35,.20)}.avatar{background:#183956;color:#f4ebd8;border:1px solid #31516c}.person small,.choice small,.muted,.portion-note{color:#9eabb9}
 .kpi{background:#0a233e;border-color:#2b4b68;color:#f4ebd8}.kpi small{color:#9eabb9}.divider,.row,.admin-table th,.admin-table td{border-color:#29445f}
-.sticky-actions{background:rgba(6,23,43,.93);border-color:#2b4965;box-shadow:0 12px 32px rgba(0,0,0,.30)}.order-grid .card{background:linear-gradient(145deg,#0b2745,#081d35)}.qty-controls button{background:#102f4d;color:#f4ebd8;border-color:#34536d}.qr-panel{background:#081f38;border-color:#49637c}.qr-img{background:#fff}.footer{color:#7f94aa}.toast{background:#f4ebd8;color:#07182e}
+.sticky-actions{background:rgba(6,23,43,.93);border-color:#2b4965;box-shadow:0 12px 32px rgba(0,0,0,.30)}.order-grid .card{background:linear-gradient(145deg,#0b2745,#081d35)}.qty-controls button{background:#102f4d;color:#f4ebd8;border-color:#34536d}.qr-panel{background:#081f38;border-color:#49637c}.qr-img{background:#fff}.footer{color:#b7c5d2;text-shadow:0 1px 5px rgba(0,0,0,.4)}.toast{background:#f4ebd8;color:#07182e}
 .admin-main .card,.admin-main .kpi{background:#f8f4eb;color:#17212d;border-color:#d8cdbd;box-shadow:0 12px 28px rgba(0,0,0,.12)}.admin-main .subtext,.admin-main .muted,.admin-main .kpi small,.admin-main .admin-table th{color:#6d6b66}.admin-main .section-title,.admin-main h3,.admin-main strong{color:#17212d}.admin-main .admin-table select{background:#fffdf8;color:#17212d;border:1px solid #d8cdbd}.admin-nav{background:#06172b;border:1px solid #29455f;box-shadow:0 12px 28px rgba(0,0,0,.25)}
 
 /* WORKING TABLE UI */
@@ -151,6 +151,16 @@ main{width:min(1160px,100%);padding:28px 16px 76px}
 .table-assign-row select{min-height:42px;width:100%;border-radius:10px;padding:9px 10px;background:#fffdf8;color:#17212d;border:1px solid #d8cdbd}
 @media (max-width:900px){.table-grid,.admin-table-grid{grid-template-columns:1fr}}
 
+/* VISIBILITY POLISH — stronger separation between background, content, text and branding */
+.header-inner{position:relative}.brand{position:relative;z-index:2}.brand-mark{flex:none}.header .brand-copy{padding:4px 0 4px 2px}.header .brand-title{font-weight:900;text-shadow:0 1px 10px rgba(0,0,0,.55)}.header .brand-sub{text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.card{background:linear-gradient(145deg,rgba(10,37,65,.985),rgba(5,24,43,.985));border-color:rgba(180,205,225,.28);box-shadow:0 20px 46px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.035)}
+.section-title,.card h3,.card strong{color:#fff3df;text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.subtext,.muted,.small{color:#c6d1dc}.field label{color:#f7ecd9}.field input,.field select{box-shadow:inset 0 0 0 1px rgba(244,235,216,.02),0 7px 18px rgba(0,0,0,.14)}
+.notice{box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}.table-card,.choice,.person{box-shadow:0 12px 26px rgba(0,0,0,.18);border-color:#41627f}.table-card:hover,.choice:hover,.person:hover{box-shadow:0 16px 30px rgba(0,0,0,.24)}
+.qr-guest-tools{border:1px solid #486982;background:rgba(7,24,46,.72);border-radius:14px;padding:14px;text-align:center}.qr-guest-tools .qr-img{width:170px;height:170px}.qr-guest-card{display:flex;flex-direction:column;align-items:center}.qr-guest-tools .qr-caption{margin:8px 0 10px;color:#d9e2ea;font-size:11px;line-height:1.5}
+.admin-nav button[data-admin="menu"]{font-size:10px;letter-spacing:.02em}.admin-main .card,.admin-main .kpi{background:#fbf7ef;color:#17212d}.admin-main .section-title,.admin-main h3,.admin-main strong{color:#17212d;text-shadow:none}
+.table-name-editor{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin-top:4px}.table-name-editor input{min-height:40px;border:1px solid #cfc2b0;border-radius:10px;background:#fffdf8;color:#17212d;padding:9px 10px;width:100%;font-weight:800}.table-name-editor button{min-height:40px}
+.qr-card .qr-action-row{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:8px}.qr-card .qr-action-row .btn{min-height:38px;padding:8px 10px;font-size:10px}
 @media (max-width:850px){.hero{grid-template-columns:1fr;min-height:0;padding:32px 24px}.hero-art{min-height:280px;margin-top:-8px}.sun{width:190px;height:190px}.ship-svg{margin-top:90px}}
 @media (max-width:650px){.brand-mark{width:120px;height:39px}.brand-title{font-size:12px}.brand-sub{font-size:8px}.hero{padding:26px 18px}.hero h1{font-size:43px}.hero-art{min-height:245px}.sun{width:165px;height:165px}.ship-svg{margin-top:75px}.hero-kanji{right:8px}.hero-stamp{right:0;bottom:0}.hero-meta{flex-wrap:wrap;gap:9px}}
 
@@ -249,15 +259,16 @@ main{width:min(1160px,100%);padding:28px 16px 76px}
   <section id="qrAccess" class="view">
     <div class="card" style="max-width:720px;margin:auto;text-align:center">
       <div class="progress-note" style="justify-content:center"><span class="dot"></span>Secure table access</div>
-      <h2 class="section-title">Table <span id="qrTableNumber"></span></h2>
+      <h2 class="section-title"><span id="qrTableNumber"></span></h2>
       <p class="subtext">This page is opened by the physical QR code on the table. Your account must match the table and an elected orderer role.</p>
       <div id="qrAccessState" class="notice" style="margin-top:16px"></div>
+      <div id="qrGuestTools" class="qr-guest-tools" style="margin-top:16px"></div>
       <div class="actions" style="justify-content:center;margin-top:16px"><button class="btn btn-primary" id="qrOrderBtn" onclick="enterOrderFromQr()" disabled>Continue to table order</button><button class="btn btn-ghost" onclick="go('home')">Exit</button></div>
     </div>
   </section>
 
   <section id="order" class="view">
-    <div class="topbar"><div><div class="progress-note"><span class="dot"></span>Orderer view</div><h2 class="section-title">Table <span id="orderTable"></span> shared order</h2><p class="subtext">The recommendation uses the <strong>actual number of people assigned to this table</strong>, not a fixed capacity.</p></div><div class="right"><span class="badge ok" id="ordererBadge"></span><span class="badge" id="orderLockBadge"></span></div></div>
+    <div class="topbar"><div><div class="progress-note"><span class="dot"></span>Orderer view</div><h2 class="section-title"><span id="orderTable"></span> shared order</h2><p class="subtext">The recommendation uses the <strong>actual number of people assigned to this table</strong>, not a fixed capacity.</p></div><div class="right"><span class="badge ok" id="ordererBadge"></span><span class="badge" id="orderLockBadge"></span></div></div>
     <div class="kpi-grid" style="margin-bottom:14px"><div class="kpi"><div class="n" id="orderHeadcount">0</div><small>Actual people at table</small></div><div class="kpi"><div class="n" id="prefTotal">0</div><small>Preference entries</small></div><div class="kpi"><div class="n" id="recommendedTotal">0</div><small>Planning baseline</small></div><div class="kpi"><div class="n" id="orderStatus">Draft</div><small>Order status</small></div></div>
     <div class="order-grid">
       <div class="card stack"><div><div class="eyebrow">Optional preference tally</div><h3 style="margin-top:6px">Who is leaning toward what?</h3><p class="subtext" style="margin-top:4px">Use this only when it helps the two orderers agree on the shared dishes. It does not lock the final order.</p></div><div id="preferenceTally"></div></div>
@@ -275,7 +286,7 @@ main{width:min(1160px,100%);padding:28px 16px 76px}
         <button data-admin="dash" class="active" onclick="adminTab('dash',this)">Dashboard</button>
         <button data-admin="people" onclick="adminTab('people',this)">People</button>
         <button data-admin="tables" onclick="adminTab('tables',this)">Tables</button>
-        <button data-admin="menu" onclick="adminTab('menu',this)">Menu</button>
+        <button data-admin="menu" onclick="adminTab('menu',this)">PULUTAN OPTIONS</button>
         <button data-admin="qr" onclick="adminTab('qr',this)">Table QR</button>
         <button data-admin="settings" onclick="adminTab('settings',this)">Settings</button>
         <button onclick="adminExit()">Close</button>
@@ -296,6 +307,7 @@ const DEFAULTS = {
   eventDate:"October 24, 2026",
   leaderSlots:2,
   tableCount:6,
+  tableNames:["Table 01","Table 02","Table 03","Table 04","Table 05","Table 06"],
   votingOpen:true,
   orderingOpen:true,
   publicUrl:"https://YOUR-WEB-APP-URL.example/pbmi",
@@ -310,6 +322,7 @@ const SEED_NAMES=["Ariel Martinez","Juan Dela Cruz","Maria Santos","Pedro Reyes"
 const APP={KEY:"pbmi14_state_v3", SECRET_TAPS:7, PORTION_BASE:4};
 const QR_FALLBACKS={1: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACgUlEQVR4nO2b22nkQBBFT60a/NkDG4BDaWXgkByTM5BCmQykT0OLux/deqwXv7A8lpYqGDEanY8LRalePSY+Y/2vT+HgvPPOO++8886/xlu1gNkF6M0Mxnop1t5Qj/M780mSNIB0DVgbM/T3GaCRJOlv/rv1OL8zP9YItZbZyY/XUG7NLNxaj/P78OHFvRjnb/1le3sjPc5/M9/fZ8wujSBK1v60Hue/xM/xGwWMYOkaMunpYkpDjd/tCORo+p3/EN+bWSmdqzWydgxYy1TK59vqcX4nHr2wLkrqYgbiy2dSdzT9zn+Et3YMlIY3XQNAI3WAtUwGY62kj6rf+VetxiWgLmY2vW5SBspvubbIHr+n5O1RWhIuqANgDOWbmd35fOOc/Cb/QqwDqxK1JZwHKDnZ8+95eWuBknrTsD6sTTBpmJGD6nf+NdvMr9Tf5yB4NvUPjQwM0tMFwTRzR9Pv/Du2FlTSQK2q0tCUqK07B0leX52SX+rnZvZgzMXJa9at2yX374n5+Gz0VlvfcknDVHbC9BfPvyfll/p5jloNzRLOeUG8/z0pP+ffuReaC+am5uRuDWf37wn5UheL8U70DznAGHLthOOAJYEYf89LpKPpd/5tK/61+gmQOqA2RFOgN4D4bO7fE/PbIRaT1bfyGErWpawLb6jH+X359fwky+oXVicPN9bj/F78dnixLZ3XTniZfnh9dWJ+XE44x1yPc7Qwn4SO8vfzf8KnYbJ6foNmPsnBsjM8vH7n3+RrEh7vRLoG7HGg+NzaH9Hj/Nf4f/KvlJdNg+p+cPkTg+ffs/HbAzl19Dwv9JdL8bTPr87Im95nNub/73beeeedd975Hfg/LiDTpx7Ytm4AAAAASUVORK5CYII=", 2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACmUlEQVR4nO2bTW6kQAxGnwekXoLUB8hRihvkSFGONDeAo/QBIsGyJdA3i6qi6fxONIQByV6USOotPqnksst2m/iOdb++hYPzzjvvvPPOO/8Rb8lK6KwEhttX3ms21OP8ynyQJPVgT7qaNdUIQSNAIUnSPf/TepxfmR+Sh6qlkJ6txMxKrIH4tbEe59fhy7f/mkoBiOGMGLbV4/zP8mZ2kj31k0F1zVH3/+lx/t/47L+VgAEEk6mri5Hu8SX677IEsjf9zn9hy+SJQoT+1ZL3giS1e9Pv/OcW/ffmoWKYDKoRqK6me+/dn37n/4a3ZijjQvcwAkymFrAmLpNtqsf5tfjkv93D1eLCUALDWUbVy+Ju3ctCu4Ue59fl4/kanBSrVlQ9yVmHchSAhUt2393pd/4Li/lV6AtBNcY/F9bG+lXe8PzqkLye68mky0lm9RxrSY9gujpF4r3qd/4jS/dzEFjMmoeTLLRTSfh9Vrq4KWTb6HH+Z/ghdY2kfrLYOupqUBu3PX8+KM9dmJXUViNqK6Wo28aXsMffg/I5ocoFq9upqq2U6ldBo9evjsnP9eerER/Bjy9YuJQYFQDFSFf3Hn+Pyef3kTTXmgvFqBvduYfsxO6/x+Pn+AswX8jc5jeqMSZZHn8PyS/rG6EvUqYVQ+/cWAq3csfe9Dv/uc39ozEu+SU8lTCcR0ILBlOJ15+Py9/mJ9UyWY7Ek6VJynpjPc6vxS/yK6nPV/P84M2JV+H387H5PD9pDUC4nBS/OrO7Say96nf+fXs9P6muMZSb/HGSMjaBt9Hj/Lr86/Nd5FedgVH14P39w/LvxN/0q4XFIzj0/v49KP/u/GRu6Kcln7Sf7/H4t/OTzP67WPDfHznvvPPOO+/8evwfR5TRNn0wqKEAAAAASUVORK5CYII=", 3: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACrklEQVR4nO2aTWrcQBBGX0UNs5TAB8hRWjczOVJuIB1lDhBQLw0tviy6e8ZxYjshsixB1aLRqN/iA1FTvyb+xeYv/4SD884777zzzjv/Gm/VAsxmBinAbAFI7W7cUY/zG/NRkrSAPS6dbOwzRGWATpKkX/mP1uP8xnyqHqqJ1ZgtYGYBG6E87azH+W348PurLhuASA+ItK8e5z+WN/uakZbVoH9qUffz9Di/Dd9LmgDpasY8dGIeoL4rkXhPPc5vw/M8eaITcXlxtLsoSdPR9Dv/tpX4e29SCp5MkIH+yfT8bg89zn8Eb2MK5QA62chqmgAby7Harnqc34q/+W++ue4aRHqQ0S8qmfQ8LLI47aHH+W358n2bd3aCNLS7FLIALF4bcDj9zr9jpTulBTSVJLpTbWep/pSUK+f51Tn5eegEKWBjn0tVBNQimHmokfiw+p1/zZ7VR1F3/82U+gg6aeolr4/OzMcFNCUzYDV9s8C9vwGeP5+Vb/5bPDQDfaa0s6SMpr6+8/h7bn41SBdpShfVIdLQyR6voXi3jfvqcX4Tvta/83iRzV8zFpfBiNeA0QPQZeahVsLH0+/8O1b+n6My0gL3SQNx6UrhVJrQnl+dkW9xtdctTW5B+PbUhkj+fc/H1/5VXMDiNdzmgJ2sHClg8T5jOJp+5/+GLx5acuUyZFjrkl0s1fHq+3Xn5F/0n7Pm4X65GqSHzDz82EuP89vyt/xKkpbWa55awVv8t2RaHn9PzLf9SbNS9V5kI7R16Psm1lH1O/93fG1I9hlgtXt3ul4cXb/zb/NWdzVuS9ADZbpk46focf7/+Lb/3AtIINJFVvc3fgTitAbid2trWEfT7/w79nJ/kl5qA4XcVmNLu8Pzq/Pxf9ifLEcZ/bbjRhxNv/POO++8886fkf8JRzSrCY4d52MAAAAASUVORK5CYII=", 4: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACdElEQVR4nO2bW26kMBBFTw1I/Wl2kKWYnWVNswNYSu/AfEYC3fmwTZOORukohDRSWcLicT6uZJXrZUx8ZYx/voSD884777zzzjv/P97KaKmTGUxlyqM/UI/zO/NRkpRASgBhhvFlBmgkSXrP/7Qe53fmp2KhZi9vRry22Ou1pbyz9mg9zu/Dt3fPytcEGjsQ07F6nP9hfuwWY+waQZCs/209zn+Lr/YbBExg8XoRMXWmmIr9bksgz6bf+Yf40czMuvLSehpZP7VYz2IlnD5Sj/M78ehuDGEmx8+E+2/S8Gz6nX+Et35qqQlvC9BIA2A9S35n/YF6nN+LL/Y70IiomTwB9S7MSPmD2+9p+ZgWY7SLGDvQAMDU5jszu3h945x8tt9Sv6pmmq12CHMuZ2kI7n9Pypf1JcwQU5PjqzptIyvfn0/Jr/WrRkZ4MzFdZIRGBgbxb4dgqdyz6Xf+k3GLr4rXzbtyI2Iq7Qa33/PyNf9NAEEiphJJ3/bn6p19fc/Hv/e/bHMhqfQHy8L7+p6Qr/tzKFMJndd0uCCe/56Ur/YL2etKqv4XKCtNXm5f3/Pxq/9tNpt0TYJX15sa97/n5HPeY/ma2rWhv7R5Gg3IidMhepzfl7/vH+WuUfbE8MGS3X5Pyd/OTxKvLbcmUr6L6WA9zu/Fv6s/r/XJElOv5WjWOPvZ9Dv/GD+tJ5yp5txDPtixPYn1rPqdf5ivkXRu8oeaBA+/pcf5HXnrWYx8yO7aYq+J3B22/lf0OP89/v78pGBB48ublZ8YuiQbrfH+/jn5Tf2KXKZKpWC1qVlG7x+dlTd9zmyG/9/tvPPOO++88zvw/wBeFAiIEw8FAwAAAABJRU5ErkJggg==", 5: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACk0lEQVR4nO2bS27bMBCGv6kEeEkDPoCPIt2gRwp6pNzAPEoOEEBcGqDxd0FSch5NGtRRLWBmYUPit/iBwZCch0x8xeKPL+HgvPPOO++8887/ibdqPZB6bEw9xPLY1sYV9Th/Y36QJE1gdsxAyDAoA3SSJL3kv1uP8zfmU41Q6clMv6zHzHpsBGpgr6rH+dvw/esXceyyAYh0QKR19Tj/vbw9TMAwXQzCuZ26/0+P8//Gt/gNAhIoHs+muO8y8edzid/rEsi96Xf+E7u+PNGJYXr109YGSTrdm37nP7YSv0uEtoDNQDibXkbv/el3/hMr8TsHrE5QUiNJuURte/T43R5f4zfuOyBkbJgOGdJBRphkdXWSDac19Dh/W37Ojy4m0iET9xjDI0DqswBseLK19Dh/W77tu0GqVaupvSsLpX7l+/NG+Xb+anFtnv2b0SnUH78/b5mPthMEycbUYyMXszHtZGPaCei8/rxNvsXqNHswXKfDZX/2+N0s3+obYTlwQadwvT9D8PN3ozyLVym9wAmKQ09BtX41yON3o/ycH3W5/Mexy6XJT2gLcV8z4fvT7/zHVvxrw7QvDixnbxyB4bHPIl0Mz383y7f61bFeqowwYYTnHsLZIORecT+Xoe9Nv/OfWMt/5yK05qN3biwNS7nj3vQ7/zd8uzVnIO1U+/uppzn54vN1W+aX+Umdwtnq6CTNyXG/sh7nb8Vf7c/S1GoZc8K7bNy+P2+ab/OT9jB1YnjayUaAaPZiEute9Tv/vr2enxTpkBWPGeDSl/5gWVhFj/O35ef5DSj357lJWC3U6qXXrzbJvzl/NdX689VHDEtP2P27Mf7t/KRyTZc0D2Hh/aOt8ubfdzvvvPPOO+/86vxvaojtfZlnWbMAAAAASUVORK5CYII=", 6: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACo0lEQVR4nO2bQW6cQBBFX4WWZtlIOYCPAjfwkSIfKTeAo8wBLNHLkRr9LLrxjCexHSuYgFS1QMP0W3wJfbqqujDxmRi/fQoH55133nnnnXf+Ld5qBBjb2axPAUYLQFrW+g31OL8y30mSJrAf55MgZuiUARpJkl7zX63H+ZX5VB2qp4eMnixgZgHrofzaWI/z6/Dh/o9uAgMQ6TsibavH+a/lzdrZ6KbZIF6WXff/6XH+3/jFv1FAApECjG2TGR+fi39vWyB70+/8B3GbPNGIbrq7LGudJA170+/8+1H8e3WoIFPyZ+LF9Nq9+9Pv/AdR/PtiWA0xI6le6CTRlVv37/H4+tykxbW1Em4EUapv5euvvel3/v2o+dX4OMlIAY3W5LqWQhaAdWfbSo/z6/Iv72cW62rxankhl/6Vv58PzWsA9GRmkOzFrLUIZmzB+g31OL8ubz1QNlxiRgOzWZ9Osj6dBDTefz4yr4FG1bqptp4Z22psipM31OP8WnzJr6wbLgbxOQBNNuIEMJuIzwbxpQzem37nP4iaN8W83E5QiuBSFU3Uk0Kvj47I1/qoOwcEc2B8FNadA0YEoMmM7STbRo/z6/I39ZE0NUunAyjtLE1wUz25fw/G1/7z+CCMmDHiJCs7cbwYxBw0tr7/HpRf8qsJ6H6GLFLIQCMrlxSw7nrGsDf9zv8NX/obQ8yYtVDP91Oo5wsw+3zdkfnr/KSGeLHbqjfVSnhTPc6vxS/51XJqtBwd5ZuFmml5fnVgfpmfNHu4GN35JOsBRrNXk1h71e/8n+N+flIwL0MczKGcD9aFLfQ4/7X89SMGRgs13Rrbptp59/qdv4s39l/dfsRQuh++/x6Q/31+UrmWS9chrOvgjj/fg/Hm33c777zzzjvv/Ob8L/wTtF9k8wU7AAAAAElFTkSuQmCC"};
 let state=loadState();
+ensureTableNames();
 let currentUserId=(()=>{try{return sessionStorage.getItem("pbmi_user_v3")||null}catch(e){return null}})();
 let votedIdentityLock=(()=>{try{return localStorage.getItem("pbmi_voted_identity_v3")||null}catch(e){return null}})();
 let selectedTable=null;
@@ -321,6 +334,17 @@ let tapCount=0,tapTimer=null,adminUnlocked=false;
 function freshState(){return {config:structuredClone(DEFAULTS),attendees:SEED_NAMES.map((name,i)=>({id:`A${String(i+1).padStart(3,"0")}`,name,table:null,vote:[],votedAt:null})),orders:{},preferences:{},overrides:{}}}
 function loadState(){try{const raw=localStorage.getItem(APP.KEY);if(raw)return JSON.parse(raw)}catch(e){}const st=freshState();seedTest(st);try{localStorage.setItem(APP.KEY,JSON.stringify(st))}catch(e){}return st}
 function saveState(){try{localStorage.setItem(APP.KEY,JSON.stringify(state))}catch(e){}}
+function ensureTableNames(){
+  const count=Math.max(1,Number(state.config.tableCount)||6);
+  const existing=Array.isArray(state.config.tableNames)?state.config.tableNames:[];
+  state.config.tableNames=Array.from({length:count},(_,i)=>{
+    const fallback=`Table ${String(i+1).padStart(2,"0")}`;
+    return String(existing[i]||fallback).trim()||fallback;
+  });
+}
+function tableLabel(t){ensureTableNames();return state.config.tableNames[Number(t)-1]||`Table ${String(t).padStart(2,"0")}`;}
+function tableCode(t){return `TABLE ${String(t).padStart(2,"0")}`;}
+function safeFileName(v){return String(v||"table").replace(/[^a-z0-9_-]+/gi,"_").replace(/^_+|_+$/g,"")||"table";}
 function seedTest(st){
   // Demo distribution across six tables: 8 / 8 / 8 / 8 / 7 / 7.
   const sizes=[8,8,8,8,7,7]; let idx=0;
@@ -375,14 +399,14 @@ function render(id){
   if(id==="order")renderOrder();
   if(id==="admin")renderAdmin();
 }
-function syncBrand(){document.getElementById("eventTitle").textContent=state.config.eventName;document.getElementById("eventSub").textContent=state.config.eventSub;document.getElementById("headerChip").textContent=qrTable?`Table ${qrTable}`:"Event Access"}
+function syncBrand(){document.getElementById("eventTitle").textContent=state.config.eventName;document.getElementById("eventSub").textContent=state.config.eventSub;document.getElementById("headerChip").textContent=qrTable?tableLabel(qrTable):"EVENT ACCESS"}
 function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2200)}
 function initials(name){return name.split(/\\s+/).map(x=>x[0]).slice(0,2).join("").toUpperCase()}
 
 function renderIdentity(){
   const sel=document.getElementById("personSelect");
   const sorted=[...state.attendees].sort((a,b)=>a.name.localeCompare(b.name));
-  sel.innerHTML='<option value="">Select your name</option>'+sorted.map(a=>`<option value="${a.id}" ${a.id===currentUserId?"selected":""}>${esc(a.name)}${a.table?` • Table ${a.table}`:""}</option>`).join("");
+  sel.innerHTML='<option value="">Select your name</option>'+sorted.map(a=>`<option value="${a.id}" ${a.id===currentUserId?"selected":""}>${esc(a.name)}${a.table?` • ${esc(tableLabel(a.table))}`:""}</option>`).join("");
 
   const lockedId=votedIdentityLock;
   if(lockedId){
@@ -407,7 +431,7 @@ function renderIdentity(){
   sel.onchange=()=>document.getElementById("identityNext").disabled=!sel.value;
 
   const u=me();const msg=document.getElementById("identityMessage");
-  if(u&&u.table){msg.className="notice ok";msg.classList.remove("hidden");msg.textContent=`You are already assigned to Table ${u.table}. Continue to view your table election status.`}
+  if(u&&u.table){msg.className="notice ok";msg.classList.remove("hidden");msg.textContent=`You are already assigned to ${tableLabel(u.table)}. Continue to view your table election status.`}
   else msg.classList.add("hidden");
 }
 function confirmIdentity(){
@@ -442,9 +466,9 @@ function renderTable(){
     const memberHtml=people.length
       ? people.slice(0,6).map(m=>`<span class="table-member ${m.id===u.id?"you":""}">${esc(m.name)}${m.id===u.id?" • YOU":""}</span>`).join("") + (people.length>6?`<span class="table-member">+${people.length-6} more</span>`:"")
       : `<div class="table-empty">No attendees assigned yet</div>`;
-    const tableBadge=selected?'<span class="badge red">'+(u.table===t?"Your table":"Selected")+'</span>':'<span class="badge">Open</span>';
+    const tableBadge=selected?'<span class="badge red">'+(u.table===t?"Your table":"Selected")+'</span>':'<span class="badge">Available</span>';
     return `<button type="button" class="table-card ${selected?"selected":""} ${locked?"locked":""}" onclick="pickTable(${t})" ${locked?"disabled":""} aria-pressed="${selected}">
-      <div class="table-card-head"><div><div class="table-status">PBMI 14TH • IZAKAYA</div><div class="table-number">TABLE ${String(t).padStart(2,"0")}</div><div class="table-count">${people.length} assigned attendee${people.length!==1?"s":""}</div></div>${tableBadge}</div>
+      <div class="table-card-head"><div><div class="table-status">PBMI 14TH • IZAKAYA</div><div class="table-number">${esc(tableLabel(t))}</div><div class="table-count">${tableCode(t)} • ${people.length} assigned attendee${people.length!==1?"s":""}</div></div>${tableBadge}</div>
       <div class="table-members">${memberHtml}</div>
       <div class="table-pick-indicator">${selected?"✓":"→"}</div>
     </button>`;
@@ -453,16 +477,24 @@ function renderTable(){
   const confirm=document.getElementById("confirmTable");
   if(u.table){
     notice.className="notice ok table-lock-banner";
-    notice.innerHTML=`<strong>Table ${u.table} is locked to ${esc(u.name)}.</strong><br>Only the event coordinator can change this assignment. You can continue to the table election.`;
+    notice.innerHTML=`<strong>${esc(tableLabel(u.table))} is locked to ${esc(u.name)}.</strong><br>Only the event coordinator can change this assignment.`;
     confirm.disabled=true;
     confirm.textContent="Table locked";
+    const oldActions=document.getElementById("tableGuestQrAction");
+    if(oldActions)oldActions.remove();
+    const action=document.createElement("div");
+    action.id="tableGuestQrAction";action.className="actions";action.style.marginTop="10px";action.innerHTML=`<button class="btn btn-secondary" onclick="downloadQr(${u.table})">DOWNLOAD ${esc(tableLabel(u.table))} QR</button>`;
+    notice.insertAdjacentElement("afterend",action);
   }else{
+    const oldActions=document.getElementById("tableGuestQrAction");
+    if(oldActions)oldActions.remove();
     notice.className="notice warn table-lock-banner";
     notice.textContent="Choose your table. There is no fixed capacity; the system uses the actual number of assigned attendees for planning.";
     confirm.disabled=!selectedTable;
-    confirm.textContent=selectedTable?`Confirm Table ${selectedTable}`:"Select a table";
+    confirm.textContent=selectedTable?`Confirm ${tableLabel(selectedTable)}`:"Select a table";
   }
 }
+
 function pickTable(t){
   const u=me();
   if(!u||u.table||hasVoted(u))return;
@@ -486,7 +518,7 @@ function confirmTableSelection(){
 function renderVote(){
   const u=me();
   if(!u||!u.table)return go("table");
-  if(hasVoted(u))return go("voteStatus");if(renderVote.userId!==u.id){selectedLeaders=[...(u.vote||[])];renderVote.userId=u.id}const t=u.table,n=Number(state.config.leaderSlots)||2,mem=members(t);document.getElementById("voteTableBadge").textContent=`Table ${t}`;document.getElementById("voteSlotsBadge").textContent=`${n} orderer${n>1?"s":""}`;document.getElementById("pluralLabel").textContent=n>1?"s":"";document.getElementById("voteCopy").textContent=`Select ${n} person${n>1?"s":""} from Table ${t}. Voting can be reopened by the coordinator if a correction is needed.`;const notice=document.getElementById("voteStateNotice");if(hasVoted(u)){notice.className="notice ok";notice.textContent="Your vote is saved and locked."}else if(!state.config.votingOpen){notice.className="notice danger";notice.textContent="Voting is currently closed."}else{notice.className="notice";notice.textContent="Votes are private while voting is open. The final result is calculated after voting closes."}document.getElementById("voteRuleNotice").textContent=`Choose exactly ${n}. If the final cutoff is tied, the coordinator must resolve the tie before ordering access is granted.`;document.getElementById("candidateCards").innerHTML=mem.map(m=>`<label class="person ${selectedLeaders.includes(m.id)?"selected":""}" onclick="toggleLeader('${m.id}')"><div class="avatar">${initials(m.name)}</div><div class="meta"><strong>${esc(m.name)}</strong><small>${m.id===u.id?"You":"Table member"}</small></div></label>`).join("");document.getElementById("voteSelectionCount").textContent=`${selectedLeaders.length} of ${n} selected`;
+  if(hasVoted(u))return go("voteStatus");if(renderVote.userId!==u.id){selectedLeaders=[...(u.vote||[])];renderVote.userId=u.id}const t=u.table,n=Number(state.config.leaderSlots)||2,mem=members(t);document.getElementById("voteTableBadge").textContent=tableLabel(t);document.getElementById("voteSlotsBadge").textContent=`${n} orderer${n>1?"s":""}`;document.getElementById("pluralLabel").textContent=n>1?"s":"";document.getElementById("voteCopy").textContent=`Select ${n} person${n>1?"s":""} from ${tableLabel(t)}. Voting can be reopened by the coordinator if a correction is needed.`;const notice=document.getElementById("voteStateNotice");if(hasVoted(u)){notice.className="notice ok";notice.textContent="Your vote is saved and locked."}else if(!state.config.votingOpen){notice.className="notice danger";notice.textContent="Voting is currently closed."}else{notice.className="notice";notice.textContent="Votes are private while voting is open. The final result is calculated after voting closes."}document.getElementById("voteRuleNotice").textContent=`Choose exactly ${n}. If the final cutoff is tied, the coordinator must resolve the tie before ordering access is granted.`;document.getElementById("candidateCards").innerHTML=mem.map(m=>`<label class="person ${selectedLeaders.includes(m.id)?"selected":""}" onclick="toggleLeader('${m.id}')"><div class="avatar">${initials(m.name)}</div><div class="meta"><strong>${esc(m.name)}</strong><small>${m.id===u.id?"You":"Table member"}</small></div></label>`).join("");document.getElementById("voteSelectionCount").textContent=`${selectedLeaders.length} of ${n} selected`;
 const submitBtn=document.getElementById("submitVote");
 submitBtn.disabled=!state.config.votingOpen||hasVoted(u)||selectedLeaders.length!==n;
 submitBtn.textContent=hasVoted(u)?"Vote submitted":(selectedLeaders.length===n?"Submit vote":`Select ${n-selectedLeaders.length} more`);}
@@ -546,21 +578,21 @@ function renderVoteStatus(){
 
   if(state.config.votingOpen){
     copy.textContent="Your vote is saved. The table election is still open, so the final orderers have not been activated yet.";
-    extra.innerHTML=`<div class="notice">Table ${u.table} • Your selections: ${(u.vote||[]).map(id=>esc(person(id)?.name||"")).join(" + ") || "—"}</div>`;
+    extra.innerHTML=`<div class="notice">${esc(tableLabel(u.table))} • Your selections: ${(u.vote||[]).map(id=>esc(person(id)?.name||"")).join(" + ") || "—"}</div>`;
     next.innerHTML="<strong>What happens next?</strong><br>Wait for voting to close. If you are elected, your ordering access will activate after the election is finalized.";
     action.textContent="Check election status";
   }else if(e.pending){
     copy.textContent="Your vote is saved, but your table has a tie at the final orderer slot.";
-    extra.innerHTML=`<div class="notice warn">Table ${u.table}: coordinator resolution is required before ordering access can be granted.</div>`;
+    extra.innerHTML=`<div class="notice warn">${esc(tableLabel(u.table))}: coordinator resolution is required before ordering access can be granted.</div>`;
     next.innerHTML="<strong>Next:</strong><br>The coordinator must resolve the tie. Ordering remains locked until then.";
     action.textContent="Check election status";
   }else if(isLeader(u.table,u.id)){
-    copy.textContent=`You were elected as an orderer for Table ${u.table}.`;
+    copy.textContent=`${esc(tableLabel(u.table))} elected you as an orderer.`;
     extra.innerHTML=`<div class="notice ok"><strong>Orderer access confirmed.</strong><br>${leaderNames(u.table).map(esc).join(" • ")}</div>`;
-    next.innerHTML="<strong>Next:</strong><br>Go to your assigned table and scan the physical Table QR. The QR will verify your table and orderer access.";
+    next.innerHTML=`<strong>Next:</strong><br>Go to ${esc(tableLabel(u.table))} and scan the physical table QR. The QR will verify your table and orderer access.`;
     action.textContent="Open table access";
   }else{
-    copy.textContent=`The election for Table ${u.table} is finalized. You were not selected as an orderer.`;
+    copy.textContent=`${esc(tableLabel(u.table))} has a finalized election. You were not selected as an orderer.`;
     extra.innerHTML=`<div class="notice">Final orderers: ${leaderNames(u.table).map(esc).join(" • ") || "—"}</div>`;
     next.innerHTML="<strong>You're finished.</strong><br>Your table orderers will handle the shared food order.";
     action.textContent="Finish";
@@ -588,11 +620,30 @@ function handleVoteStatusAction(){
   }
   go("home");
 }
-function renderQrAccess(){const t=qrTable,u=me();document.getElementById("qrTableNumber").textContent=t||"—";const box=document.getElementById("qrAccessState"),btn=document.getElementById("qrOrderBtn");btn.disabled=true;if(!t){box.className="notice danger";box.textContent="This link is missing a table identifier.";return}if(t<1||t>Number(state.config.tableCount)){box.className="notice danger";box.textContent=`Table ${t} does not exist. Please use the QR code printed for an active table.`;return}if(!u){box.className="notice warn";box.textContent=`Table ${t} QR detected. Select your name first so the system can verify your table and orderer access.`;return}if(!u.table){box.className="notice danger";box.textContent="You do not have a table assignment yet.";return}if(u.table!==t){box.className="notice danger";box.textContent=`Access denied. You are assigned to Table ${u.table}, not Table ${t}.`;return}if(state.config.votingOpen){box.className="notice warn";box.textContent="Voting is still open. Orderer access will activate after voting closes.";return}const e=election(t);if(e.pending){box.className="notice warn";box.textContent="Table election has a tie at the final slot. Ordering access is paused until the coordinator resolves it.";return}if(!state.config.orderingOpen){box.className="notice warn";box.textContent="Ordering is currently closed.";return}if(!isLeader(t,u.id)){box.className="notice danger";box.textContent="Access denied. Only the elected orderers for this table can use the table ordering screen.";return}box.className="notice ok";box.textContent=`Access granted. You are an elected Table ${t} orderer.`;btn.disabled=false}
+function renderQrAccess(){
+  const t=qrTable,u=me();
+  document.getElementById("qrTableNumber").textContent=t?tableLabel(t):"—";
+  const box=document.getElementById("qrAccessState"),btn=document.getElementById("qrOrderBtn"),tools=document.getElementById("qrGuestTools");
+  btn.disabled=true;
+  tools.innerHTML="";
+  if(!t){box.className="notice danger";box.textContent="This link is missing a table identifier.";return}
+  if(t<1||t>Number(state.config.tableCount)){box.className="notice danger";box.textContent=`${tableLabel(t)} does not exist. Please use the QR code printed for an active table.`;return}
+  if(!u){box.className="notice warn";box.textContent=`${tableLabel(t)} QR detected. Select your name first so the system can verify your table and orderer access.`;return}
+  if(!u.table){box.className="notice danger";box.textContent="You do not have a table assignment yet.";return}
+  if(u.table!==t){box.className="notice danger";box.textContent=`Access denied. You are assigned to ${tableLabel(u.table)}, not ${tableLabel(t)}.`;return}
+  tools.innerHTML=`<div class="qr-guest-card"><img class="qr-img" src="${qrImg(t,260)}" alt="${esc(tableLabel(t))} QR code"><div class="qr-caption"><strong>${esc(tableLabel(t))}</strong><br>Save this QR to your phone as a backup.</div><button class="btn btn-secondary" onclick="downloadQr(${t})">DOWNLOAD QR</button></div>`;
+  if(state.config.votingOpen){box.className="notice warn";box.textContent="Voting is still open. Orderer access will activate after voting closes.";return}
+  const e=election(t);
+  if(e.pending){box.className="notice warn";box.textContent="This table has a tie at the final orderer slot. Ordering access is paused until the coordinator resolves it.";return}
+  if(!state.config.orderingOpen){box.className="notice warn";box.textContent="Ordering is currently closed.";return}
+  if(!isLeader(t,u.id)){box.className="notice danger";box.textContent="Access denied. Only the elected orderers for this table can use the table ordering screen.";return}
+  box.className="notice ok";box.textContent=`Access granted. You are an elected orderer for ${tableLabel(t)}.`;btn.disabled=false;
+}
+
 function enterOrderFromQr(){if(me()&&qrTable&&isLeader(qrTable,me().id)&&!state.config.votingOpen&&state.config.orderingOpen)go("order")}
 
 function ensureOrder(t){const key=String(t);state.orders[key] ||= {submitted:false,submittedAt:null,submittedBy:null,items:{}};return state.orders[key]}
-function renderOrder(){const u=me();if(!u||!u.table||!isLeader(u.table,u.id))return go("qrAccess");const t=u.table,o=ensureOrder(t),mem=members(t);document.getElementById("orderTable").textContent=t;document.getElementById("ordererBadge").textContent=`${u.name} • Orderer`;document.getElementById("orderLockBadge").textContent=o.submitted?"Submitted":"Draft";document.getElementById("orderHeadcount").textContent=mem.length;const prefTotal=Object.values(state.preferences).filter(x=>x.table===t).reduce((n,x)=>n+(x.count||0),0);document.getElementById("prefTotal").textContent=prefTotal;const baseline=Math.max(1,Math.ceil(mem.length/APP.PORTION_BASE));document.getElementById("recommendedTotal").textContent=baseline;document.getElementById("orderStatus").textContent=o.submitted?"Sent":"Draft";renderPreferenceTally(t);renderOrderItems(t,baseline)}
+function renderOrder(){const u=me();if(!u||!u.table||!isLeader(u.table,u.id))return go("qrAccess");const t=u.table,o=ensureOrder(t),mem=members(t);document.getElementById("orderTable").textContent=tableLabel(t);document.getElementById("ordererBadge").textContent=`${u.name} • Orderer`;document.getElementById("orderLockBadge").textContent=o.submitted?"Submitted":"Draft";document.getElementById("orderHeadcount").textContent=mem.length;const prefTotal=Object.values(state.preferences).filter(x=>x.table===t).reduce((n,x)=>n+(x.count||0),0);document.getElementById("prefTotal").textContent=prefTotal;const baseline=Math.max(1,Math.ceil(mem.length/APP.PORTION_BASE));document.getElementById("recommendedTotal").textContent=baseline;document.getElementById("orderStatus").textContent=o.submitted?"Sent":"Draft";renderPreferenceTally(t);renderOrderItems(t,baseline)}
 function renderPreferenceTally(t){const foods=state.config.foods.filter(f=>f.active);document.getElementById("preferenceTally").innerHTML=foods.map(f=>{const row=state.preferences[f.name+"_"+t]||{count:0};return `<div class="qty-row"><div><strong>${esc(f.name)}</strong><div class="portion-note">${row.count||0} likely eater${(row.count||0)!==1?"s":""}</div></div><div class="qty-controls"><button onclick="changePreference(${t},'${esc(f.name)}',-1)" aria-label="Decrease ${esc(f.name)}">−</button><span class="qty">${row.count||0}</span><button onclick="changePreference(${t},'${esc(f.name)}',1)" aria-label="Increase ${esc(f.name)}">+</button></div></div>`}).join("")||'<div class="notice">No active menu items.</div>'}
 function changePreference(t,food,d){const key=food+"_"+t;state.preferences[key] ||= {table:t,food, count:0};state.preferences[key].count=Math.max(0,state.preferences[key].count+d);saveState();renderOrder()}
 function renderOrderItems(t,baseline){const o=ensureOrder(t);document.getElementById("orderItems").innerHTML=state.config.foods.filter(f=>f.active).map(f=>{const q=o.items[f.name]||0;return `<div class="qty-row"><div><strong>${esc(f.name)}</strong><div class="portion-note">Suggested total: ${baseline} shared dish${baseline!==1?"es":""} for ${members(t).length} actual guest${members(t).length!==1?"s":""}</div></div><div class="qty-controls"><button onclick="changeOrderQty(${t},'${esc(f.name)}',-1)" aria-label="Decrease ${esc(f.name)} quantity">−</button><span class="qty">${q}</span><button onclick="changeOrderQty(${t},'${esc(f.name)}',1)" aria-label="Increase ${esc(f.name)} quantity">+</button></div></div>`}).join("")}
@@ -602,7 +653,7 @@ function submitSharedOrder(){
   if(!u||!isLeader(u.table,u.id)||!state.config.orderingOpen)return;
   const o=ensureOrder(u.table);
   if(o.submitted){
-    toast(`Table ${u.table} order is already submitted.`);
+    toast(`${tableLabel(u.table)} order is already submitted.`);
     renderOrder();
     return;
   }
@@ -613,7 +664,7 @@ function submitSharedOrder(){
   o.submittedBy=u.name;
   saveState();
   renderOrder();
-  toast(`Table ${u.table} order submitted.`);
+  toast(`${tableLabel(u.table)} order submitted.`);
 }
 
 function openAdmin(){go("adminGate")}
@@ -625,34 +676,46 @@ function leaderNames(t){const e=election(t);return e.leaders.map(x=>person(x.id)
 function renderAdminContent(){
   const assigned=state.attendees.filter(a=>a.table).length,voted=state.attendees.filter(hasVoted).length,submitted=Object.values(state.orders).filter(o=>o.submitted).length;
   document.getElementById("adminDash").innerHTML=`<div class="stack"><div class="topbar"><div><div class="eyebrow">Private control</div><h2 class="section-title">Coordinator dashboard</h2><p class="subtext">Live prototype view. Production writes will move through Google Apps Script into Google Sheets.</p></div><div class="right"><span class="badge ${state.config.votingOpen?"gold":"ok"}">${state.config.votingOpen?"Voting open":"Voting closed"}</span><span class="badge ${state.config.orderingOpen?"ok":"red"}">${state.config.orderingOpen?"Ordering open":"Ordering closed"}</span></div></div><div class="kpi-grid"><div class="kpi"><div class="n">${state.attendees.length}</div><small>Attendees</small></div><div class="kpi"><div class="n">${assigned}</div><small>Tables assigned</small></div><div class="kpi"><div class="n">${voted}</div><small>Votes submitted</small></div><div class="kpi"><div class="n">${submitted}/${state.config.tableCount}</div><small>Orders submitted</small></div></div><div class="card"><div class="eyebrow">Election</div><h3 style="margin-top:6px">Table leader status</h3><div class="scroll" style="margin-top:10px">${leaderStatusTable()}</div></div><div class="card"><div class="eyebrow">Operations</div><h3 style="margin-top:6px">Table order status</h3><div class="scroll" style="margin-top:10px">${orderStatusTable()}</div></div></div>`;
-  document.getElementById("adminPeople").innerHTML=`<div class="stack"><div><div class="eyebrow">People</div><h2 class="section-title">Attendee management</h2><p class="subtext">Only the coordinator can move a person after a table is locked.</p></div><div class="card scroll"><table class="admin-table"><thead><tr><th>Name</th><th>Table</th><th>Vote</th><th>Role</th><th></th></tr></thead><tbody>${state.attendees.map(a=>`<tr><td><strong>${esc(a.name)}</strong><div class="muted">${a.id}</div></td><td><select onchange="adminMove('${a.id}',this.value)"><option value="">Unassigned</option>${Array.from({length:state.config.tableCount},(_,i)=>`<option value="${i+1}" ${a.table===i+1?"selected":""}>Table ${i+1}</option>`).join("")}</select></td><td>${hasVoted(a)?"Submitted":"Not yet"}</td><td>${a.table&&!state.config.votingOpen&&isLeader(a.table,a.id)?"Orderer":"Attendee"}</td><td><button class="btn btn-danger" onclick="adminReset('${a.id}')">Reset</button></td></tr>`).join("")}</tbody></table></div></div>`;
+  document.getElementById("adminPeople").innerHTML=`<div class="stack"><div><div class="eyebrow">People</div><h2 class="section-title">Attendee management</h2><p class="subtext">Only the coordinator can move a person after a table is locked.</p></div><div class="card scroll"><table class="admin-table"><thead><tr><th>Name</th><th>Table</th><th>Vote</th><th>Role</th><th></th></tr></thead><tbody>${state.attendees.map(a=>`<tr><td><strong>${esc(a.name)}</strong><div class="muted">${a.id}</div></td><td><select onchange="adminMove('${a.id}',this.value)"><option value="">Unassigned</option>${Array.from({length:state.config.tableCount},(_,i)=>`<option value="${i+1}" ${a.table===i+1?"selected":""}>${esc(tableLabel(i+1))}</option>`).join("")}</select></td><td>${hasVoted(a)?"Submitted":"Not yet"}</td><td>${a.table&&!state.config.votingOpen&&isLeader(a.table,a.id)?"Orderer":"Attendee"}</td><td><button class="btn btn-danger" onclick="adminReset('${a.id}')">Reset</button></td></tr>`).join("")}</tbody></table></div></div>`;
   document.getElementById("adminTables").innerHTML=`<div class="stack"><div><div class="eyebrow">Tables</div><h2 class="section-title">Table assignment control</h2><p class="subtext">Assign people directly to each table. There is no fixed table capacity; headcount is always calculated from actual assignments.</p></div><div class="notice ok"><strong>${state.config.tableCount} active table${state.config.tableCount!==1?"s":""}</strong> • ${state.attendees.filter(a=>a.table).length}/${state.attendees.length} attendees currently assigned.</div><div class="admin-table-grid">${Array.from({length:state.config.tableCount},(_,i)=>adminTableCard(i+1)).join("")}</div></div>`;
-  document.getElementById("adminMenu").innerHTML=`<div class="stack"><div><div class="eyebrow">Menu</div><h2 class="section-title">Shared-food options</h2><p class="subtext">Only active dishes appear to orderers.</p></div><div class="card">${state.config.foods.map((f,i)=>`<div class="row"><span><strong>${esc(f.name)}</strong><small style="display:block">${f.active?"Visible":"Hidden"}</small></span><button class="btn ${f.active?"btn-secondary":"btn-ghost"}" onclick="toggleFood(${i})">${f.active?"Disable":"Enable"}</button></div>`).join("")}<div class="actions" style="margin-top:14px"><button class="btn btn-dark" onclick="addFood()">Add dish</button></div></div></div>`;
+  document.getElementById("adminMenu").innerHTML=`<div class="stack"><div><div class="eyebrow">Food control</div><h2 class="section-title">PULUTAN OPTIONS</h2><p class="subtext">These are the shared-food choices that appear to the table orderers.</p></div><div class="card">${state.config.foods.map((f,i)=>`<div class="row"><span><strong>${esc(f.name)}</strong><small style="display:block">${f.active?"Visible to orderers":"Hidden from orderers"}</small></span><div class="actions" style="margin:0"><button class="btn btn-secondary" onclick="renameFood(${i})">Rename</button><button class="btn ${f.active?"btn-secondary":"btn-ghost"}" onclick="toggleFood(${i})">${f.active?"Disable":"Enable"}</button></div></div>`).join("")}<div class="actions" style="margin-top:14px"><button class="btn btn-dark" onclick="addFood()">Add pulutan</button></div></div></div>`;
   renderAdminQr();
   document.getElementById("adminSettings").innerHTML=`<div class="stack"><div><div class="eyebrow">Settings</div><h2 class="section-title">Event controls</h2><p class="subtext">These values will map directly to your Google Sheets settings tab later.</p></div><div class="card stack"><div class="grid grid-2"><div class="field"><label>Event name</label><input id="setEventName" value="${esc(state.config.eventName)}"></div><div class="field"><label>Event date</label><input id="setEventDate" value="${esc(state.config.eventDate)}"></div></div><div class="field"><label>Public web app URL for table QR codes</label><input id="setPublicUrl" value="${esc(state.config.publicUrl)}"><small class="muted">The QR target becomes this URL plus <code>?table=1</code> through <code>?table=6</code>.</small></div><div class="grid grid-3"><div class="field"><label>Tables</label><input id="setTableCount" type="number" min="1" max="12" value="${state.config.tableCount}"></div><div class="field"><label>Orderers per table</label><select id="setLeaderSlots"><option value="1" ${state.config.leaderSlots===1?"selected":""}>1</option><option value="2" ${state.config.leaderSlots===2?"selected":""}>2</option></select></div><div class="field"><label>Planning baseline</label><input value="1 shared dish / ${APP.PORTION_BASE} actual guests" disabled></div></div><div class="grid grid-2"><label class="choice selected"><input type="checkbox" id="setVoting" ${state.config.votingOpen?"checked":""} style="width:auto"><strong>Voting open</strong><small>When closed, final leaders become eligible.</small></label><label class="choice selected"><input type="checkbox" id="setOrdering" ${state.config.orderingOpen?"checked":""} style="width:auto"><strong>Ordering open</strong><small>Controls QR ordering access.</small></label></div><div class="actions"><button class="btn btn-primary" onclick="saveSettings()">Save settings</button><button class="btn btn-danger" onclick="resetDemo()">Reset prototype</button></div><div class="notice warn">Security note: the local prototype uses a hidden gesture + access key. The production version should put the coordinator controls behind a separate Apps Script admin route and validate permissions server-side.</div></div></div>`;
 }
-function leaderStatusTable(){return `<table class="admin-table"><thead><tr><th>Table</th><th>Actual people</th><th>Votes</th><th>Result</th></tr></thead><tbody>${Array.from({length:state.config.tableCount},(_,i)=>{const t=i+1,e=election(t),votes=totalVotesFor(t),top=Object.entries(votes).sort((a,b)=>b[1]-a[1]);return `<tr><td>Table ${t}</td><td>${members(t).length}</td><td>${top.slice(0,4).map(([id,n])=>`${esc(person(id)?.name||"")} ${n}`).join(" • ")||"—"}</td><td>${e.pending?`<span class="badge gold">Tie — resolve</span> ${e.tieIds.map(id=>`<button class="btn btn-secondary" style="margin:2px;padding:7px 9px" onclick="resolveTie(${t},'${id}')">${esc(person(id)?.name||"Select")}</button>`).join("")}`:leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join(" ")||"—"}</td></tr>`}).join("")}</tbody></table>`}
-function orderStatusTable(){return `<table class="admin-table"><thead><tr><th>Table</th><th>People</th><th>Orderer status</th><th>Order</th></tr></thead><tbody>${Array.from({length:state.config.tableCount},(_,i)=>{const t=i+1,o=state.orders[String(t)]||{},e=election(t);let role="—";if(state.config.votingOpen){role=leaderNames(t).length?`<span class="badge gold">Provisional • ${leaderNames(t).map(esc).join(" • ")}</span>`:`—`}else if(e.pending){role=`<span class="badge gold">Access paused • tie</span>`}else{role=leaderNames(t).length?leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join(" "):"—"}return `<tr><td>Table ${t}</td><td>${members(t).length}</td><td>${role}</td><td>${o.submitted?`<span class="badge ok">Submitted</span>`:`<span class="badge">Draft</span>`}</td></tr>`}).join("")}</tbody></table>`}
+function leaderStatusTable(){return `<table class="admin-table"><thead><tr><th>Table</th><th>Actual people</th><th>Votes</th><th>Result</th></tr></thead><tbody>${Array.from({length:state.config.tableCount},(_,i)=>{const t=i+1,e=election(t),votes=totalVotesFor(t),top=Object.entries(votes).sort((a,b)=>b[1]-a[1]);return `<tr><td>${esc(tableLabel(t))}</td><td>${members(t).length}</td><td>${top.slice(0,4).map(([id,n])=>`${esc(person(id)?.name||"")} ${n}`).join(" • ")||"—"}</td><td>${e.pending?`<span class="badge gold">Tie — resolve</span> ${e.tieIds.map(id=>`<button class="btn btn-secondary" style="margin:2px;padding:7px 9px" onclick="resolveTie(${t},'${id}')">${esc(person(id)?.name||"Select")}</button>`).join("")}`:leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join(" ")||"—"}</td></tr>`}).join("")}</tbody></table>`}
+function orderStatusTable(){return `<table class="admin-table"><thead><tr><th>Table</th><th>People</th><th>Orderer status</th><th>Order</th></tr></thead><tbody>${Array.from({length:state.config.tableCount},(_,i)=>{const t=i+1,o=state.orders[String(t)]||{},e=election(t);let role="—";if(state.config.votingOpen){role=leaderNames(t).length?`<span class="badge gold">Provisional • ${leaderNames(t).map(esc).join(" • ")}</span>`:`—`}else if(e.pending){role=`<span class="badge gold">Access paused • tie</span>`}else{role=leaderNames(t).length?leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join(" "):"—"}return `<tr><td>${esc(tableLabel(t))}</td><td>${members(t).length}</td><td>${role}</td><td>${o.submitted?`<span class="badge ok">Submitted</span>`:`<span class="badge">Draft</span>`}</td></tr>`}).join("")}</tbody></table>`}
 function adminTableCard(t){
-  const e=election(t),o=state.orders[String(t)]||{},people=members(t),assignedIds=new Set(state.attendees.filter(a=>a.table).map(a=>a.id));
+  const e=election(t),o=state.orders[String(t)]||{},people=members(t);
   const unassigned=state.attendees.filter(a=>!a.table);
   const memberList=people.length
     ? `<div class="admin-member-list">${people.map(a=>`<div class="admin-member-row"><span><strong>${esc(a.name)}</strong><small>${a.id}${hasVoted(a)?" • Vote submitted":""}${!state.config.votingOpen&&isLeader(t,a.id)?" • Orderer":""}</small></span><button class="btn btn-danger" style="padding:7px 9px;min-height:34px" onclick="adminRemoveFromTable('${a.id}')">Remove</button></div>`).join("")}</div>`
     : `<div class="notice">No attendees assigned to this table yet.</div>`;
   const options=unassigned.map(a=>`<option value="${a.id}">${esc(a.name)} • ${a.id}</option>`).join("");
   return `<div class="card admin-table-card">
-    <div class="topbar"><div><div class="badge">Table ${t}</div><h3 style="margin-top:7px">${people.length} attendee${people.length!==1?"s":""}</h3></div><div class="right">${e.pending?'<span class="badge gold">Tie pending</span>':leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join("")}<span class="badge ${o.submitted?"ok":""}">${o.submitted?"Order submitted":"Order draft"}</span></div></div>
+    <div class="topbar"><div><div class="badge">${tableCode(t)}</div><h3 style="margin-top:7px">${esc(tableLabel(t))}</h3><div class="muted" style="margin-top:4px">${people.length} attendee${people.length!==1?"s":""}</div><div class="muted" style="margin-top:3px;font-size:10px">Changing this name does not change the table number or QR URL.</div></div><div class="right">${e.pending?'<span class="badge gold">Tie pending</span>':leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join("")}<span class="badge ${o.submitted?"ok":""}">${o.submitted?"Order submitted":"Order draft"}</span></div></div>
+    <div class="table-name-editor"><div class="field"><label>Table display name</label><input id="tableName_${t}" value="${esc(tableLabel(t))}" maxlength="40"></div><button class="btn btn-secondary" onclick="renameTable(${t})">Save name</button></div>
     ${memberList}
-    <div class="table-assign-row"><div class="field"><label>Add attendee to Table ${t}</label><select id="adminAssign_${t}"><option value="">Select attendee</option>${options}</select></div><button class="btn btn-primary" onclick="adminAssignToTable(${t})" ${unassigned.length?"":"disabled"}>Assign</button></div>
-    <div class="actions"><button class="btn btn-secondary" onclick="previewQr(${t})">Preview QR</button><button class="btn btn-ghost" onclick="adminResetTable(${t})">Reset table</button></div>
+    <div class="table-assign-row"><div class="field"><label>Add attendee to ${esc(tableLabel(t))}</label><select id="adminAssign_${t}"><option value="">Select attendee</option>${options}</select></div><button class="btn btn-primary" onclick="adminAssignToTable(${t})" ${unassigned.length?"":"disabled"}>Assign</button></div>
+    <div class="actions"><button class="btn btn-secondary" onclick="previewQr(${t})">Preview QR</button><button class="btn btn-secondary" onclick="downloadQr(${t})">Download QR</button><button class="btn btn-ghost" onclick="adminResetTable(${t})">Reset table</button></div>
   </div>`;
 }
+function renameTable(t){
+  const input=document.getElementById(`tableName_${t}`);
+  const value=(input?.value||"").trim().replace(/\s+/g," ");
+  if(!value){toast("Enter a table name first.");return;}
+  state.config.tableNames ||= [];
+  state.config.tableNames[t-1]=value.slice(0,40);
+  ensureTableNames();
+  saveAndRender();
+  toast(`${tableLabel(t)} saved.`);
+}
+
 function adminAssignToTable(t){
   const sel=document.getElementById(`adminAssign_${t}`),id=sel?.value,a=person(id);
   if(!a){toast("Select an attendee first.");return;}
   a.table=Number(t);a.vote=[];a.votedAt=null;
   state.overrides=Object.fromEntries(Object.entries(state.overrides).map(([table,ids])=>[table,ids.filter(x=>x!==id)]));
-  saveAndRender();toast(`${a.name} assigned to Table ${t}.`);
+  saveAndRender();toast(`${a.name} assigned to ${tableLabel(t)}.`);
 }
 function adminRemoveFromTable(id){
   const a=person(id);if(!a)return;
@@ -661,17 +724,35 @@ function adminRemoveFromTable(id){
   saveAndRender();toast(`${a.name} removed from the table.`);
 }
 
-function renderAdminQr(){document.getElementById("adminQr").innerHTML=`<div class="stack"><div><div class="eyebrow">Physical access</div><h2 class="section-title">Six table QR codes</h2><p class="subtext">Each QR encodes only its table identifier. The site verifies the attendee, fixed table, election result, and ordering status before granting access.</p></div><div class="notice ${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"warn":"ok"}">${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"Demo QR targets are shown. Set the real public web-app URL in Settings before printing the six codes.":"Public URL is configured. These are the table QR targets you can print."}</div><div class="actions"><button class="btn btn-dark" onclick="window.print()" ${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"disabled":""}>Print all six</button></div><div class="qr-grid">${Array.from({length:state.config.tableCount},(_,i)=>qrCard(i+1)).join("")}</div></div>`}
+function renderAdminQr(){document.getElementById("adminQr").innerHTML=`<div class="stack"><div><div class="eyebrow">Physical access</div><h2 class="section-title">Table QR Manager</h2><p class="subtext">Guests can save a backup copy of their table QR. Each QR still grants ordering access only after the system verifies the attendee, assigned table, election result, and ordering status.</p></div><div class="notice ${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"warn":"ok"}">${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"Demo QR targets are shown. Set the real public web-app URL in Settings before downloading or printing.":"Public URL is configured. QR downloads use the current public URL and custom table names."}</div><div class="actions"><button class="btn btn-dark" onclick="window.print()" ${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"disabled":""}>Print all QR codes</button></div><div class="qr-grid">${Array.from({length:state.config.tableCount},(_,i)=>qrCard(i+1)).join("")}</div></div>`}
 function qrTarget(t){const base=(state.config.publicUrl||"").replace(/\s+/g,"").replace(/\/$/,"");return `${base}?table=${t}`}
 function qrImg(t,size=220){return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=10&data=${encodeURIComponent(qrTarget(t))}`}
-function qrCard(t){const url=qrTarget(t);const fallback=QR_FALLBACKS[t]||"";return `<div class="qr-card"><img class="qr-img" src="${qrImg(t,220)}" data-fallback="${fallback}" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="QR code for Table ${t}"><h3>Table ${t}</h3><p>${esc(url)}</p><button class="btn btn-secondary" onclick="previewQr(${t})">Open preview</button></div>`}
-function previewQr(t){window.open(qrTarget(t),"_blank")}
+function qrCard(t){const url=qrTarget(t);const fallback=QR_FALLBACKS[t]||"";return `<div class="qr-card"><img class="qr-img" src="${qrImg(t,220)}" data-fallback="${fallback}" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="${esc(tableLabel(t))} QR code"><h3>${esc(tableLabel(t))}</h3><p>${esc(url)}</p><div class="qr-action-row"><button class="btn btn-secondary" onclick="previewQr(${t})">Preview QR</button><button class="btn btn-primary" onclick="downloadQr(${t})">Download PNG</button></div></div>`}
+function previewQr(t){window.open(qrImg(t,800),"_blank")}
+async function downloadQr(t){
+  const url=qrImg(t,900);
+  const filename=`${safeFileName(tableLabel(t))}_QR.png`;
+  try{
+    const res=await fetch(url,{mode:"cors",cache:"no-store"});
+    if(!res.ok)throw new Error("QR download failed");
+    const blob=await res.blob();
+    const blobUrl=URL.createObjectURL(blob);
+    const a=document.createElement("a");a.href=blobUrl;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(blobUrl),1500);
+    toast(`${tableLabel(t)} QR downloaded.`);
+  }catch(e){
+    window.open(url,"_blank");
+    toast("QR opened in a new tab. Use Save image to download it.");
+  }
+}
+
 function adminMove(id,v){const a=person(id);if(!a)return;const target=v?Number(v):null;if(target && (target<1 || target>Number(state.config.tableCount)))return;a.table=target;a.vote=[];a.votedAt=null;state.overrides=Object.fromEntries(Object.entries(state.overrides).map(([t,ids])=>[t,ids.filter(x=>x!==id)]));saveAndRender();}
 function adminReset(id){const a=person(id);if(!a)return;a.vote=[];a.votedAt=null;if(votedIdentityLock===id)clearIdentityLock();saveAndRender()}
 function adminResetTable(t){members(t).forEach(a=>{a.vote=[];a.votedAt=null});delete state.orders[String(t)];Object.keys(state.preferences).forEach(k=>{if(k.endsWith("_"+t))delete state.preferences[k]});delete state.overrides[String(t)];saveAndRender();toast(`Table ${t} reset.`)}
 function resolveTie(t,id){state.overrides[String(t)] ||= [];if(!state.overrides[String(t)].includes(id))state.overrides[String(t)].push(id);saveAndRender();toast(`Table ${t} tie resolved.`)}
 function toggleFood(i){state.config.foods[i].active=!state.config.foods[i].active;saveAndRender()}
-function addFood(){const name=prompt("Dish name");if(!name)return;state.config.foods.push({name:name.trim(),active:true});saveAndRender()}
+function renameFood(i){const current=state.config.foods[i]?.name||"";const name=prompt("Pulutan name",current);if(name===null)return;const clean=name.trim().replace(/\s+/g," ");if(!clean){toast("Enter a pulutan name first.");return;}state.config.foods[i].name=clean.slice(0,50);saveAndRender();toast("Pulutan option renamed.")}
+function addFood(){const name=prompt("Pulutan name");if(!name)return;const clean=name.trim().replace(/\s+/g," ");if(!clean)return;state.config.foods.push({name:clean.slice(0,50),active:true});saveAndRender()}
 function saveSettings(){
   state.config.eventName=document.getElementById("setEventName").value.trim()||DEFAULTS.eventName;
   state.config.eventDate=document.getElementById("setEventDate").value.trim()||DEFAULTS.eventDate;
@@ -679,6 +760,8 @@ function saveSettings(){
   const oldCount=Number(state.config.tableCount)||6;
   const newCount=Math.max(1,Math.min(12,Number(document.getElementById("setTableCount").value)||6));
   state.config.tableCount=newCount;
+  const currentNames=Array.isArray(state.config.tableNames)?state.config.tableNames:[];
+  state.config.tableNames=Array.from({length:newCount},(_,i)=>String(currentNames[i]||`Table ${String(i+1).padStart(2,"0")}`));
   state.config.leaderSlots=Math.max(1,Math.min(2,Number(document.getElementById("setLeaderSlots").value)||2));
   state.config.votingOpen=document.getElementById("setVoting").checked;
   state.config.orderingOpen=document.getElementById("setOrdering").checked;
