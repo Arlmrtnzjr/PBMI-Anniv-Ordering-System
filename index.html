@@ -123,6 +123,34 @@ main{width:min(1160px,100%);padding:28px 16px 76px}
 .kpi{background:#0a233e;border-color:#2b4b68;color:#f4ebd8}.kpi small{color:#9eabb9}.divider,.row,.admin-table th,.admin-table td{border-color:#29445f}
 .sticky-actions{background:rgba(6,23,43,.93);border-color:#2b4965;box-shadow:0 12px 32px rgba(0,0,0,.30)}.order-grid .card{background:linear-gradient(145deg,#0b2745,#081d35)}.qty-controls button{background:#102f4d;color:#f4ebd8;border-color:#34536d}.qr-panel{background:#081f38;border-color:#49637c}.qr-img{background:#fff}.footer{color:#7f94aa}.toast{background:#f4ebd8;color:#07182e}
 .admin-main .card,.admin-main .kpi{background:#f8f4eb;color:#17212d;border-color:#d8cdbd;box-shadow:0 12px 28px rgba(0,0,0,.12)}.admin-main .subtext,.admin-main .muted,.admin-main .kpi small,.admin-main .admin-table th{color:#6d6b66}.admin-main .section-title,.admin-main h3,.admin-main strong{color:#17212d}.admin-main .admin-table select{background:#fffdf8;color:#17212d;border:1px solid #d8cdbd}.admin-nav{background:#06172b;border:1px solid #29455f;box-shadow:0 12px 28px rgba(0,0,0,.25)}
+
+/* WORKING TABLE UI */
+.table-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.table-card{position:relative;min-height:180px;padding:18px;border:1px solid #2e4e6a;border-radius:16px;background:linear-gradient(145deg,#0c2947,#092039);cursor:pointer;transition:.16s;overflow:hidden}
+.table-card:hover{border-color:#d15a5f;transform:translateY(-1px)}
+.table-card.selected{border-color:var(--verm);box-shadow:0 0 0 3px rgba(227,27,35,.18),0 14px 30px rgba(0,0,0,.18)}
+.table-card.locked{cursor:default;border-color:#7b5a37;background:linear-gradient(145deg,#2a2330,#102942)}
+.table-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.table-number{font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1;color:#f4ebd8}
+.table-status{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aeb8c6;font-weight:900}
+.table-count{margin-top:7px;color:#cdd7e1;font-size:12px}
+.table-members{display:flex;flex-wrap:wrap;gap:6px;margin-top:15px}
+.table-member{font-size:10px;padding:6px 8px;border-radius:999px;background:#123552;border:1px solid #2d4d69;color:#d8e0e8;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.table-member.you{border-color:rgba(227,27,35,.62);color:#fff0ef;background:rgba(227,27,35,.13)}
+.table-empty{color:#8fa0b1;font-size:11px;font-style:italic;padding-top:12px}
+.table-pick-indicator{position:absolute;right:16px;bottom:16px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid #49637c;color:#aeb8c6;font-weight:900}
+.table-card.selected .table-pick-indicator{background:var(--verm);border-color:#ff4b51;color:#fff}
+.table-lock-banner{margin-bottom:12px}
+.admin-table-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.admin-table-card{display:grid;gap:12px}
+.admin-member-list{display:grid;gap:7px;max-height:230px;overflow:auto}
+.admin-member-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 9px;border:1px solid #d8cdbd;border-radius:10px;background:#fffdf8}
+.admin-member-row strong{font-size:12px}
+.admin-member-row small{display:block;color:#6d6b66;font-size:10px}
+.table-assign-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end}
+.table-assign-row select{min-height:42px;width:100%;border-radius:10px;padding:9px 10px;background:#fffdf8;color:#17212d;border:1px solid #d8cdbd}
+@media (max-width:900px){.table-grid,.admin-table-grid{grid-template-columns:1fr}}
+
 @media (max-width:850px){.hero{grid-template-columns:1fr;min-height:0;padding:32px 24px}.hero-art{min-height:280px;margin-top:-8px}.sun{width:190px;height:190px}.ship-svg{margin-top:90px}}
 @media (max-width:650px){.brand-mark{width:120px;height:39px}.brand-title{font-size:12px}.brand-sub{font-size:8px}.hero{padding:26px 18px}.hero h1{font-size:43px}.hero-art{min-height:245px}.sun{width:165px;height:165px}.ship-svg{margin-top:75px}.hero-kanji{right:8px}.hero-stamp{right:0;bottom:0}.hero-meta{flex-wrap:wrap;gap:9px}}
 
@@ -189,7 +217,7 @@ main{width:min(1160px,100%);padding:28px 16px 76px}
 
   <section id="table" class="view">
     <div class="topbar"><div><div class="progress-note"><span class="dot"></span>Step 2 • Table</div><h2 class="section-title">Choose your table</h2><p class="subtext">This assignment is locked for the night after confirmation.</p></div><div class="right"><span class="badge" id="userBadge"></span></div></div>
-    <div class="card stack"><div id="tableNotice" class="notice warn">Choose carefully. There is no attendee-side table change after confirmation.</div><div id="tableCards" class="choice-grid"></div><div class="sticky-actions"><div class="actions"><button class="btn btn-primary" id="confirmTable" onclick="confirmTableSelection()" disabled>Confirm table</button><button class="btn btn-ghost" onclick="go('identity')">Back</button></div></div></div>
+    <div class="card stack"><div id="tableNotice" class="notice warn">Choose carefully. There is no attendee-side table change after confirmation.</div><div id="tableCards" class="table-grid"></div><div class="sticky-actions"><div class="actions"><button class="btn btn-primary" id="confirmTable" onclick="confirmTableSelection()" disabled>Confirm table</button><button class="btn btn-ghost" onclick="go('identity')">Back</button></div></div></div>
   </section>
 
   <section id="vote" class="view">
@@ -294,7 +322,10 @@ function freshState(){return {config:structuredClone(DEFAULTS),attendees:SEED_NA
 function loadState(){try{const raw=localStorage.getItem(APP.KEY);if(raw)return JSON.parse(raw)}catch(e){}const st=freshState();seedTest(st);try{localStorage.setItem(APP.KEY,JSON.stringify(st))}catch(e){}return st}
 function saveState(){try{localStorage.setItem(APP.KEY,JSON.stringify(state))}catch(e){}}
 function seedTest(st){
-  st.attendees.slice(0,8).forEach(a=>a.table=1);
+  // Demo distribution across six tables: 8 / 8 / 8 / 8 / 7 / 7.
+  const sizes=[8,8,8,8,7,7]; let idx=0;
+  sizes.forEach((size,t)=>{for(let i=0;i<size && idx<st.attendees.length;i++,idx++)st.attendees[idx].table=t+1});
+  // Seed a small Table 1 election so the election/admin screens are immediately testable.
   st.attendees[0].vote=[st.attendees[1].id,st.attendees[2].id];st.attendees[0].votedAt="2026-09-27T16:00:00Z";
   st.attendees[1].vote=[st.attendees[2].id,st.attendees[3].id];st.attendees[1].votedAt="2026-09-27T16:02:00Z";
   st.attendees[2].vote=[st.attendees[2].id,st.attendees[4].id];st.attendees[2].votedAt="2026-09-27T16:04:00Z";
@@ -388,16 +419,69 @@ function confirmIdentity(){
     return;
   }
 
+  const previousUserId=currentUserId;
   currentUserId=id;
   try{sessionStorage.setItem("pbmi_user_v3",id)}catch(e){}
   const u=me();
+  selectedTable=u.table||null;
+  if(previousUserId!==id && !u.table)selectedTable=null;
 
   if(qrTable){go("qrAccess");return}
   if(u.table){go("vote")}else go("table");
 }
-function renderTable(){const u=me();if(!u)return go("identity");document.getElementById("userBadge").textContent=u.name;selectedTable=u.table||selectedTable;const wrap=document.getElementById("tableCards");wrap.innerHTML=Array.from({length:Number(state.config.tableCount)||6},(_,i)=>{const t=i+1,c=members(t).length,selected=selectedTable===t;return `<label class="choice ${selected?"selected":""}" onclick="pickTable(${t})"><strong>Table ${t}</strong><small>${c} assigned tonight</small><span class="badge ${c?"":"gold"}">${c?"Active table":"Open"}</span></label>`}).join("");document.getElementById("confirmTable").disabled=!selectedTable||!!u.table;document.getElementById("tableNotice").className=u.table?"notice ok":"notice warn";document.getElementById("tableNotice").textContent=u.table?`You are locked to Table ${u.table}. Only the event coordinator can change this assignment.`:"Choose carefully. Your attendee-side table assignment locks after confirmation."}
-function pickTable(t){const u=me();if(u?.table || hasVoted(u))return;selectedTable=t;renderTable()}
-function confirmTableSelection(){const u=me();if(!u||u.table||!selectedTable)return;u.table=selectedTable;saveState();toast(`Table ${selectedTable} confirmed.`);go("vote")}
+function renderTable(){
+  const u=me();
+  if(!u)return go("identity");
+  document.getElementById("userBadge").textContent=u.name;
+  selectedTable=u.table||selectedTable||null;
+  const wrap=document.getElementById("tableCards");
+  const tableCount=Math.max(1,Number(state.config.tableCount)||6);
+  if(selectedTable && (selectedTable<1 || selectedTable>tableCount))selectedTable=null;
+  wrap.innerHTML=Array.from({length:tableCount},(_,i)=>{
+    const t=i+1, people=members(t), selected=selectedTable===t, locked=!!u.table;
+    const memberHtml=people.length
+      ? people.slice(0,6).map(m=>`<span class="table-member ${m.id===u.id?"you":""}">${esc(m.name)}${m.id===u.id?" • YOU":""}</span>`).join("") + (people.length>6?`<span class="table-member">+${people.length-6} more</span>`:"")
+      : `<div class="table-empty">No attendees assigned yet</div>`;
+    const tableBadge=selected?'<span class="badge red">'+(u.table===t?"Your table":"Selected")+'</span>':'<span class="badge">Open</span>';
+    return `<button type="button" class="table-card ${selected?"selected":""} ${locked?"locked":""}" onclick="pickTable(${t})" ${locked?"disabled":""} aria-pressed="${selected}">
+      <div class="table-card-head"><div><div class="table-status">PBMI 14TH • IZAKAYA</div><div class="table-number">TABLE ${String(t).padStart(2,"0")}</div><div class="table-count">${people.length} assigned attendee${people.length!==1?"s":""}</div></div>${tableBadge}</div>
+      <div class="table-members">${memberHtml}</div>
+      <div class="table-pick-indicator">${selected?"✓":"→"}</div>
+    </button>`;
+  }).join("");
+  const notice=document.getElementById("tableNotice");
+  const confirm=document.getElementById("confirmTable");
+  if(u.table){
+    notice.className="notice ok table-lock-banner";
+    notice.innerHTML=`<strong>Table ${u.table} is locked to ${esc(u.name)}.</strong><br>Only the event coordinator can change this assignment. You can continue to the table election.`;
+    confirm.disabled=true;
+    confirm.textContent="Table locked";
+  }else{
+    notice.className="notice warn table-lock-banner";
+    notice.textContent="Choose your table. There is no fixed capacity; the system uses the actual number of assigned attendees for planning.";
+    confirm.disabled=!selectedTable;
+    confirm.textContent=selectedTable?`Confirm Table ${selectedTable}`:"Select a table";
+  }
+}
+function pickTable(t){
+  const u=me();
+  if(!u||u.table||hasVoted(u))return;
+  const n=Number(t),count=Math.max(1,Number(state.config.tableCount)||6);
+  if(!Number.isInteger(n)||n<1||n>count){toast("That table is not available.");return;}
+  selectedTable=n;
+  renderTable();
+}
+function confirmTableSelection(){
+  const u=me();
+  const count=Math.max(1,Number(state.config.tableCount)||6);
+  const t=Number(selectedTable);
+  if(!u||u.table||hasVoted(u)||!Number.isInteger(t)||t<1||t>count){toast("Please select an available table.");return;}
+  u.table=t;
+  selectedTable=t;
+  saveState();
+  toast(`Table ${t} confirmed.`);
+  go("vote");
+}
 
 function renderVote(){
   const u=me();
@@ -504,7 +588,7 @@ function handleVoteStatusAction(){
   }
   go("home");
 }
-function renderQrAccess(){const t=qrTable,u=me();document.getElementById("qrTableNumber").textContent=t||"—";const box=document.getElementById("qrAccessState"),btn=document.getElementById("qrOrderBtn");btn.disabled=true;if(!t){box.className="notice danger";box.textContent="This link is missing a table identifier.";return}if(!u){box.className="notice warn";box.textContent=`Table ${t} QR detected. Select your name first so the system can verify your table and orderer access.`;return}if(!u.table){box.className="notice danger";box.textContent="You do not have a table assignment yet.";return}if(u.table!==t){box.className="notice danger";box.textContent=`Access denied. You are assigned to Table ${u.table}, not Table ${t}.`;return}if(state.config.votingOpen){box.className="notice warn";box.textContent="Voting is still open. Orderer access will activate after voting closes.";return}const e=election(t);if(e.pending){box.className="notice warn";box.textContent="Table election has a tie at the final slot. Ordering access is paused until the coordinator resolves it.";return}if(!state.config.orderingOpen){box.className="notice warn";box.textContent="Ordering is currently closed.";return}if(!isLeader(t,u.id)){box.className="notice danger";box.textContent="Access denied. Only the elected orderers for this table can use the table ordering screen.";return}box.className="notice ok";box.textContent=`Access granted. You are an elected Table ${t} orderer.`;btn.disabled=false}
+function renderQrAccess(){const t=qrTable,u=me();document.getElementById("qrTableNumber").textContent=t||"—";const box=document.getElementById("qrAccessState"),btn=document.getElementById("qrOrderBtn");btn.disabled=true;if(!t){box.className="notice danger";box.textContent="This link is missing a table identifier.";return}if(t<1||t>Number(state.config.tableCount)){box.className="notice danger";box.textContent=`Table ${t} does not exist. Please use the QR code printed for an active table.`;return}if(!u){box.className="notice warn";box.textContent=`Table ${t} QR detected. Select your name first so the system can verify your table and orderer access.`;return}if(!u.table){box.className="notice danger";box.textContent="You do not have a table assignment yet.";return}if(u.table!==t){box.className="notice danger";box.textContent=`Access denied. You are assigned to Table ${u.table}, not Table ${t}.`;return}if(state.config.votingOpen){box.className="notice warn";box.textContent="Voting is still open. Orderer access will activate after voting closes.";return}const e=election(t);if(e.pending){box.className="notice warn";box.textContent="Table election has a tie at the final slot. Ordering access is paused until the coordinator resolves it.";return}if(!state.config.orderingOpen){box.className="notice warn";box.textContent="Ordering is currently closed.";return}if(!isLeader(t,u.id)){box.className="notice danger";box.textContent="Access denied. Only the elected orderers for this table can use the table ordering screen.";return}box.className="notice ok";box.textContent=`Access granted. You are an elected Table ${t} orderer.`;btn.disabled=false}
 function enterOrderFromQr(){if(me()&&qrTable&&isLeader(qrTable,me().id)&&!state.config.votingOpen&&state.config.orderingOpen)go("order")}
 
 function ensureOrder(t){const key=String(t);state.orders[key] ||= {submitted:false,submittedAt:null,submittedBy:null,items:{}};return state.orders[key]}
@@ -542,26 +626,71 @@ function renderAdminContent(){
   const assigned=state.attendees.filter(a=>a.table).length,voted=state.attendees.filter(hasVoted).length,submitted=Object.values(state.orders).filter(o=>o.submitted).length;
   document.getElementById("adminDash").innerHTML=`<div class="stack"><div class="topbar"><div><div class="eyebrow">Private control</div><h2 class="section-title">Coordinator dashboard</h2><p class="subtext">Live prototype view. Production writes will move through Google Apps Script into Google Sheets.</p></div><div class="right"><span class="badge ${state.config.votingOpen?"gold":"ok"}">${state.config.votingOpen?"Voting open":"Voting closed"}</span><span class="badge ${state.config.orderingOpen?"ok":"red"}">${state.config.orderingOpen?"Ordering open":"Ordering closed"}</span></div></div><div class="kpi-grid"><div class="kpi"><div class="n">${state.attendees.length}</div><small>Attendees</small></div><div class="kpi"><div class="n">${assigned}</div><small>Tables assigned</small></div><div class="kpi"><div class="n">${voted}</div><small>Votes submitted</small></div><div class="kpi"><div class="n">${submitted}/${state.config.tableCount}</div><small>Orders submitted</small></div></div><div class="card"><div class="eyebrow">Election</div><h3 style="margin-top:6px">Table leader status</h3><div class="scroll" style="margin-top:10px">${leaderStatusTable()}</div></div><div class="card"><div class="eyebrow">Operations</div><h3 style="margin-top:6px">Table order status</h3><div class="scroll" style="margin-top:10px">${orderStatusTable()}</div></div></div>`;
   document.getElementById("adminPeople").innerHTML=`<div class="stack"><div><div class="eyebrow">People</div><h2 class="section-title">Attendee management</h2><p class="subtext">Only the coordinator can move a person after a table is locked.</p></div><div class="card scroll"><table class="admin-table"><thead><tr><th>Name</th><th>Table</th><th>Vote</th><th>Role</th><th></th></tr></thead><tbody>${state.attendees.map(a=>`<tr><td><strong>${esc(a.name)}</strong><div class="muted">${a.id}</div></td><td><select onchange="adminMove('${a.id}',this.value)"><option value="">Unassigned</option>${Array.from({length:state.config.tableCount},(_,i)=>`<option value="${i+1}" ${a.table===i+1?"selected":""}>Table ${i+1}</option>`).join("")}</select></td><td>${hasVoted(a)?"Submitted":"Not yet"}</td><td>${a.table&&!state.config.votingOpen&&isLeader(a.table,a.id)?"Orderer":"Attendee"}</td><td><button class="btn btn-danger" onclick="adminReset('${a.id}')">Reset</button></td></tr>`).join("")}</tbody></table></div></div>`;
-  document.getElementById("adminTables").innerHTML=`<div class="stack"><div><div class="eyebrow">Tables</div><h2 class="section-title">Six-table control</h2><p class="subtext">Actual headcount drives the planning baseline and table status.</p></div>${Array.from({length:state.config.tableCount},(_,i)=>adminTableCard(i+1)).join("")}</div>`;
+  document.getElementById("adminTables").innerHTML=`<div class="stack"><div><div class="eyebrow">Tables</div><h2 class="section-title">Table assignment control</h2><p class="subtext">Assign people directly to each table. There is no fixed table capacity; headcount is always calculated from actual assignments.</p></div><div class="notice ok"><strong>${state.config.tableCount} active table${state.config.tableCount!==1?"s":""}</strong> • ${state.attendees.filter(a=>a.table).length}/${state.attendees.length} attendees currently assigned.</div><div class="admin-table-grid">${Array.from({length:state.config.tableCount},(_,i)=>adminTableCard(i+1)).join("")}</div></div>`;
   document.getElementById("adminMenu").innerHTML=`<div class="stack"><div><div class="eyebrow">Menu</div><h2 class="section-title">Shared-food options</h2><p class="subtext">Only active dishes appear to orderers.</p></div><div class="card">${state.config.foods.map((f,i)=>`<div class="row"><span><strong>${esc(f.name)}</strong><small style="display:block">${f.active?"Visible":"Hidden"}</small></span><button class="btn ${f.active?"btn-secondary":"btn-ghost"}" onclick="toggleFood(${i})">${f.active?"Disable":"Enable"}</button></div>`).join("")}<div class="actions" style="margin-top:14px"><button class="btn btn-dark" onclick="addFood()">Add dish</button></div></div></div>`;
   renderAdminQr();
   document.getElementById("adminSettings").innerHTML=`<div class="stack"><div><div class="eyebrow">Settings</div><h2 class="section-title">Event controls</h2><p class="subtext">These values will map directly to your Google Sheets settings tab later.</p></div><div class="card stack"><div class="grid grid-2"><div class="field"><label>Event name</label><input id="setEventName" value="${esc(state.config.eventName)}"></div><div class="field"><label>Event date</label><input id="setEventDate" value="${esc(state.config.eventDate)}"></div></div><div class="field"><label>Public web app URL for table QR codes</label><input id="setPublicUrl" value="${esc(state.config.publicUrl)}"><small class="muted">The QR target becomes this URL plus <code>?table=1</code> through <code>?table=6</code>.</small></div><div class="grid grid-3"><div class="field"><label>Tables</label><input id="setTableCount" type="number" min="1" max="12" value="${state.config.tableCount}"></div><div class="field"><label>Orderers per table</label><select id="setLeaderSlots"><option value="1" ${state.config.leaderSlots===1?"selected":""}>1</option><option value="2" ${state.config.leaderSlots===2?"selected":""}>2</option></select></div><div class="field"><label>Planning baseline</label><input value="1 shared dish / ${APP.PORTION_BASE} actual guests" disabled></div></div><div class="grid grid-2"><label class="choice selected"><input type="checkbox" id="setVoting" ${state.config.votingOpen?"checked":""} style="width:auto"><strong>Voting open</strong><small>When closed, final leaders become eligible.</small></label><label class="choice selected"><input type="checkbox" id="setOrdering" ${state.config.orderingOpen?"checked":""} style="width:auto"><strong>Ordering open</strong><small>Controls QR ordering access.</small></label></div><div class="actions"><button class="btn btn-primary" onclick="saveSettings()">Save settings</button><button class="btn btn-danger" onclick="resetDemo()">Reset prototype</button></div><div class="notice warn">Security note: the local prototype uses a hidden gesture + access key. The production version should put the coordinator controls behind a separate Apps Script admin route and validate permissions server-side.</div></div></div>`;
 }
 function leaderStatusTable(){return `<table class="admin-table"><thead><tr><th>Table</th><th>Actual people</th><th>Votes</th><th>Result</th></tr></thead><tbody>${Array.from({length:state.config.tableCount},(_,i)=>{const t=i+1,e=election(t),votes=totalVotesFor(t),top=Object.entries(votes).sort((a,b)=>b[1]-a[1]);return `<tr><td>Table ${t}</td><td>${members(t).length}</td><td>${top.slice(0,4).map(([id,n])=>`${esc(person(id)?.name||"")} ${n}`).join(" • ")||"—"}</td><td>${e.pending?`<span class="badge gold">Tie — resolve</span> ${e.tieIds.map(id=>`<button class="btn btn-secondary" style="margin:2px;padding:7px 9px" onclick="resolveTie(${t},'${id}')">${esc(person(id)?.name||"Select")}</button>`).join("")}`:leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join(" ")||"—"}</td></tr>`}).join("")}</tbody></table>`}
 function orderStatusTable(){return `<table class="admin-table"><thead><tr><th>Table</th><th>People</th><th>Orderer status</th><th>Order</th></tr></thead><tbody>${Array.from({length:state.config.tableCount},(_,i)=>{const t=i+1,o=state.orders[String(t)]||{},e=election(t);let role="—";if(state.config.votingOpen){role=leaderNames(t).length?`<span class="badge gold">Provisional • ${leaderNames(t).map(esc).join(" • ")}</span>`:`—`}else if(e.pending){role=`<span class="badge gold">Access paused • tie</span>`}else{role=leaderNames(t).length?leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join(" "):"—"}return `<tr><td>Table ${t}</td><td>${members(t).length}</td><td>${role}</td><td>${o.submitted?`<span class="badge ok">Submitted</span>`:`<span class="badge">Draft</span>`}</td></tr>`}).join("")}</tbody></table>`}
-function adminTableCard(t){const e=election(t),o=state.orders[String(t)]||{};return `<div class="card"><div class="topbar"><div><div class="badge">Table ${t}</div><h3 style="margin-top:7px">${members(t).length} actual attendee${members(t).length!==1?"s":""}</h3></div><div class="right">${e.pending?'<span class="badge gold">Tie pending</span>':leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join("")}<span class="badge ${o.submitted?"ok":""}">${o.submitted?"Order submitted":"Order draft"}</span></div></div><div class="actions"><button class="btn btn-secondary" onclick="previewQr(${t})">Preview QR</button><button class="btn btn-ghost" onclick="adminResetTable(${t})">Reset table</button></div></div>`}
+function adminTableCard(t){
+  const e=election(t),o=state.orders[String(t)]||{},people=members(t),assignedIds=new Set(state.attendees.filter(a=>a.table).map(a=>a.id));
+  const unassigned=state.attendees.filter(a=>!a.table);
+  const memberList=people.length
+    ? `<div class="admin-member-list">${people.map(a=>`<div class="admin-member-row"><span><strong>${esc(a.name)}</strong><small>${a.id}${hasVoted(a)?" • Vote submitted":""}${!state.config.votingOpen&&isLeader(t,a.id)?" • Orderer":""}</small></span><button class="btn btn-danger" style="padding:7px 9px;min-height:34px" onclick="adminRemoveFromTable('${a.id}')">Remove</button></div>`).join("")}</div>`
+    : `<div class="notice">No attendees assigned to this table yet.</div>`;
+  const options=unassigned.map(a=>`<option value="${a.id}">${esc(a.name)} • ${a.id}</option>`).join("");
+  return `<div class="card admin-table-card">
+    <div class="topbar"><div><div class="badge">Table ${t}</div><h3 style="margin-top:7px">${people.length} attendee${people.length!==1?"s":""}</h3></div><div class="right">${e.pending?'<span class="badge gold">Tie pending</span>':leaderNames(t).map(n=>`<span class="badge ok">${esc(n)}</span>`).join("")}<span class="badge ${o.submitted?"ok":""}">${o.submitted?"Order submitted":"Order draft"}</span></div></div>
+    ${memberList}
+    <div class="table-assign-row"><div class="field"><label>Add attendee to Table ${t}</label><select id="adminAssign_${t}"><option value="">Select attendee</option>${options}</select></div><button class="btn btn-primary" onclick="adminAssignToTable(${t})" ${unassigned.length?"":"disabled"}>Assign</button></div>
+    <div class="actions"><button class="btn btn-secondary" onclick="previewQr(${t})">Preview QR</button><button class="btn btn-ghost" onclick="adminResetTable(${t})">Reset table</button></div>
+  </div>`;
+}
+function adminAssignToTable(t){
+  const sel=document.getElementById(`adminAssign_${t}`),id=sel?.value,a=person(id);
+  if(!a){toast("Select an attendee first.");return;}
+  a.table=Number(t);a.vote=[];a.votedAt=null;
+  state.overrides=Object.fromEntries(Object.entries(state.overrides).map(([table,ids])=>[table,ids.filter(x=>x!==id)]));
+  saveAndRender();toast(`${a.name} assigned to Table ${t}.`);
+}
+function adminRemoveFromTable(id){
+  const a=person(id);if(!a)return;
+  a.table=null;a.vote=[];a.votedAt=null;
+  state.overrides=Object.fromEntries(Object.entries(state.overrides).map(([table,ids])=>[table,ids.filter(x=>x!==id)]));
+  saveAndRender();toast(`${a.name} removed from the table.`);
+}
+
 function renderAdminQr(){document.getElementById("adminQr").innerHTML=`<div class="stack"><div><div class="eyebrow">Physical access</div><h2 class="section-title">Six table QR codes</h2><p class="subtext">Each QR encodes only its table identifier. The site verifies the attendee, fixed table, election result, and ordering status before granting access.</p></div><div class="notice ${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"warn":"ok"}">${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"Demo QR targets are shown. Set the real public web-app URL in Settings before printing the six codes.":"Public URL is configured. These are the table QR targets you can print."}</div><div class="actions"><button class="btn btn-dark" onclick="window.print()" ${state.config.publicUrl.includes("YOUR-WEB-APP-URL")?"disabled":""}>Print all six</button></div><div class="qr-grid">${Array.from({length:state.config.tableCount},(_,i)=>qrCard(i+1)).join("")}</div></div>`}
 function qrTarget(t){const base=(state.config.publicUrl||"").replace(/\s+/g,"").replace(/\/$/,"");return `${base}?table=${t}`}
 function qrImg(t,size=220){return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=10&data=${encodeURIComponent(qrTarget(t))}`}
 function qrCard(t){const url=qrTarget(t);const fallback=QR_FALLBACKS[t]||"";return `<div class="qr-card"><img class="qr-img" src="${qrImg(t,220)}" data-fallback="${fallback}" onerror="this.onerror=null;this.src=this.dataset.fallback" alt="QR code for Table ${t}"><h3>Table ${t}</h3><p>${esc(url)}</p><button class="btn btn-secondary" onclick="previewQr(${t})">Open preview</button></div>`}
 function previewQr(t){window.open(qrTarget(t),"_blank")}
-function adminMove(id,v){const a=person(id);if(!a)return;a.table=v?Number(v):null;a.vote=[];a.votedAt=null;state.overrides=Object.fromEntries(Object.entries(state.overrides).map(([t,ids])=>[t,ids.filter(x=>x!==id)]));saveAndRender()}
+function adminMove(id,v){const a=person(id);if(!a)return;const target=v?Number(v):null;if(target && (target<1 || target>Number(state.config.tableCount)))return;a.table=target;a.vote=[];a.votedAt=null;state.overrides=Object.fromEntries(Object.entries(state.overrides).map(([t,ids])=>[t,ids.filter(x=>x!==id)]));saveAndRender();}
 function adminReset(id){const a=person(id);if(!a)return;a.vote=[];a.votedAt=null;if(votedIdentityLock===id)clearIdentityLock();saveAndRender()}
 function adminResetTable(t){members(t).forEach(a=>{a.vote=[];a.votedAt=null});delete state.orders[String(t)];Object.keys(state.preferences).forEach(k=>{if(k.endsWith("_"+t))delete state.preferences[k]});delete state.overrides[String(t)];saveAndRender();toast(`Table ${t} reset.`)}
 function resolveTie(t,id){state.overrides[String(t)] ||= [];if(!state.overrides[String(t)].includes(id))state.overrides[String(t)].push(id);saveAndRender();toast(`Table ${t} tie resolved.`)}
 function toggleFood(i){state.config.foods[i].active=!state.config.foods[i].active;saveAndRender()}
 function addFood(){const name=prompt("Dish name");if(!name)return;state.config.foods.push({name:name.trim(),active:true});saveAndRender()}
-function saveSettings(){state.config.eventName=document.getElementById("setEventName").value.trim()||DEFAULTS.eventName;state.config.eventDate=document.getElementById("setEventDate").value.trim()||DEFAULTS.eventDate;state.config.publicUrl=document.getElementById("setPublicUrl").value.trim()||DEFAULTS.publicUrl;state.config.tableCount=Math.max(1,Math.min(12,Number(document.getElementById("setTableCount").value)||6));state.config.leaderSlots=Math.max(1,Math.min(2,Number(document.getElementById("setLeaderSlots").value)||2));state.config.votingOpen=document.getElementById("setVoting").checked;state.config.orderingOpen=document.getElementById("setOrdering").checked;saveState();syncBrand();renderAdmin();toast("Settings saved.")}
+function saveSettings(){
+  state.config.eventName=document.getElementById("setEventName").value.trim()||DEFAULTS.eventName;
+  state.config.eventDate=document.getElementById("setEventDate").value.trim()||DEFAULTS.eventDate;
+  state.config.publicUrl=document.getElementById("setPublicUrl").value.trim()||DEFAULTS.publicUrl;
+  const oldCount=Number(state.config.tableCount)||6;
+  const newCount=Math.max(1,Math.min(12,Number(document.getElementById("setTableCount").value)||6));
+  state.config.tableCount=newCount;
+  state.config.leaderSlots=Math.max(1,Math.min(2,Number(document.getElementById("setLeaderSlots").value)||2));
+  state.config.votingOpen=document.getElementById("setVoting").checked;
+  state.config.orderingOpen=document.getElementById("setOrdering").checked;
+  if(newCount<oldCount){
+    state.attendees.forEach(a=>{if(a.table && a.table>newCount){a.table=null;a.vote=[];a.votedAt=null;}});
+    Object.keys(state.orders).forEach(k=>{if(Number(k)>newCount)delete state.orders[k]});
+    Object.keys(state.overrides).forEach(k=>{if(Number(k)>newCount)delete state.overrides[k]});
+    Object.keys(state.preferences).forEach(k=>{const m=k.match(/_(\d+)$/);if(m&&Number(m[1])>newCount)delete state.preferences[k]});
+  }
+  if(selectedTable && selectedTable>newCount)selectedTable=null;
+  saveState();syncBrand();renderAdmin();toast("Settings saved.")
+}
 
 // Hidden coordinator entry: 7 quick taps on the PBMI mark. This is intentionally not advertised.
 document.getElementById("secretLogo").addEventListener("click",()=>{tapCount++;clearTimeout(tapTimer);tapTimer=setTimeout(()=>tapCount=0,1700);if(tapCount>=APP.SECRET_TAPS){tapCount=0;openAdmin()}})
