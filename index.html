@@ -264,7 +264,6 @@ body{background:radial-gradient(circle at 50% -5%,rgba(227,27,35,.18),transparen
   ADMIN_SESSION_KEY:'pbmi_admin_token_v1',
   USER_KEY:'pbmi_user_v1',
   QR_SIZE:220,
-  AUTO_REFRESH_MS:5000
 };
 
 // Official table-specific Google Forms. Public responder URLs are used here.
@@ -290,7 +289,7 @@ let adminToken=sessionStorage.getItem(CONFIG.ADMIN_SESSION_KEY)||null;
 let qrTable=readQrTable();
 let selectedLeaders=[];
 let orderDraft={tableId:null,items:{},submitted:false};
-let tapCount=0,tapTimer=null,refreshTimer=null;
+let tapCount=0,tapTimer=null;
 
 const demoState={
   config:{eventName:'PBMI 14th Anniversary',eventSub:'Izakaya • Shared Tables',eventDate:'October 24, 2026',publicUrl:location.href.split('?')[0]},
@@ -389,11 +388,9 @@ function renderAdminGate(){const input=document.getElementById('adminPin');input
 async function unlockAdmin(){const pass=document.getElementById('adminPin').value.trim();if(!pass){toast('Enter the admin password.','error');return;}try{const out=await callServer('adminLogin',[pass],'Signing in…');adminToken=out.token;sessionStorage.setItem(CONFIG.ADMIN_SESSION_KEY,adminToken);await refreshAdmin();go('admin');}catch(e){document.getElementById('adminError').textContent=String(e.message||e);document.getElementById('adminError').classList.remove('hidden');setBusy(false);}}
 function bindAdminEnter(){const input=document.getElementById('adminPin');if(!input||input.dataset.enterBound==='1')return;input.dataset.enterBound='1';input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlockAdmin();}});input.addEventListener('input',()=>document.getElementById('adminError').classList.add('hidden'));}
 async function checkBackendHealth(){const el=document.getElementById('adminHealthStatus');if(!el)return;el.textContent='Checking…';try{const h=await callServer('backendHealth',[],'Checking backend…');el.textContent=`Connected • ${h.buildId} • Admin configured: ${h.adminConfigured?'YES':'NO'}`;}catch(e){el.textContent='Backend check failed. '+String(e.message||e);}}
-function adminExit(){adminToken=null;sessionStorage.removeItem(CONFIG.ADMIN_SESSION_KEY);clearInterval(refreshTimer);go('home');}
+function adminExit(){adminToken=null;sessionStorage.removeItem(CONFIG.ADMIN_SESSION_KEY);go('home');}
 async function refreshAdmin(){if(!adminToken&&!CONFIG.DEMO_MODE)return;try{const data=await callServer('getAdminState',[adminToken],'Refreshing dashboard…');normalizeState(data);renderAdmin();}catch(e){if(String(e.message||e).toLowerCase().includes('expired')){adminToken=null;sessionStorage.removeItem(CONFIG.ADMIN_SESSION_KEY);go('adminGate');}else fail(e);}}
-function startAdminAutoRefresh(){clearInterval(refreshTimer);refreshTimer=setInterval(()=>{if(currentView==='admin'&&adminToken)refreshAdminQuiet();},CONFIG.AUTO_REFRESH_MS);}
-async function refreshAdminQuiet(){try{const data=isAppsScript()||CONFIG.BACKEND_URL?await callServer('getAdminState',[adminToken],'Refreshing…'):null;if(data){normalizeState(data);renderAdmin();}}catch(e){console.warn(e);}}
-function renderAdmin(){if(!adminToken&&!CONFIG.DEMO_MODE)return go('adminGate');document.querySelectorAll('#admin .admin-nav button[data-admin]').forEach(b=>b.classList.toggle('active',b.dataset.admin===currentAdminTab));['dash','people','tables','orders','menu','qr','settings'].forEach(t=>document.getElementById('admin'+cap(t)).classList.toggle('hidden',currentAdminTab!==t));renderAdminTab(currentAdminTab);startAdminAutoRefresh();}
+function renderAdmin(){if(!adminToken&&!CONFIG.DEMO_MODE)return go('adminGate');document.querySelectorAll('#admin .admin-nav button[data-admin]').forEach(b=>b.classList.toggle('active',b.dataset.admin===currentAdminTab));['dash','people','tables','orders','menu','qr','settings'].forEach(t=>document.getElementById('admin'+cap(t)).classList.toggle('hidden',currentAdminTab!==t));renderAdminTab(currentAdminTab);}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 function adminTab(tab){currentAdminTab=tab;renderAdmin();}
 function renderAdminTab(tab){({dash:renderAdminDashboard,people:renderAdminPeople,tables:renderAdminTables,orders:renderAdminOrders,menu:renderAdminMenu,qr:renderAdminQr,settings:renderAdminSettings}[tab]||renderAdminDashboard)();}
