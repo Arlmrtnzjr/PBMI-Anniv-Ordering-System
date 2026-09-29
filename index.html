@@ -240,7 +240,8 @@ body{background:radial-gradient(circle at 50% -5%,rgba(227,27,35,.18),transparen
 <div id="loadingOverlay" class="loading-overlay hidden"><div class="loading-simple"><div class="spinner" aria-hidden="true"></div><strong class="loading-label">Loading…</strong></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>const CONFIG={
-  BACKEND_URL:'https://script.google.com/macros/s/AKfycbw9tCz5O5CzhPDEZ41mOz2VA_UU9yk3AuvEqXmWklw8WNKuPLPZVLzU1lF8MEpOIWxvXA/exec', // Stable Apps Script backend. Keep this when publishing to GitHub Pages.
+  BACKEND_URL:'https://script.google.com/macros/s/AKfycbyApOPqEe5O0tTqQqim7pP_-3DkzatCHP_Ckj6jh6mAvHVYR5N4MJMQ8dgCYPdCVF_OpA/exec', // Stable Apps Script backend. Keep this when publishing to GitHub Pages.
+  EXPECTED_BUILD:'PBMI-FINAL-ADMIN-21X-20260929',
   DEMO_MODE:new URLSearchParams(location.search).get('demo')==='1',
   SECRET_TAPS:7,
   ADMIN_SESSION_KEY:'pbmi_admin_token_v1',
@@ -299,7 +300,8 @@ function callServer(method,args=[],label='Loading…'){
     const timeout=setTimeout(()=>{cleanup();bad(new Error('Backend request timed out. Check your connection and try again.'));},15000);
     window[cb]=(resp)=>{cleanup();if(resp?.ok)ok(resp.data);else bad(new Error(resp?.error||'Backend error.'));};
     function cleanup(){clearTimeout(timeout);delete window[cb];script.remove();}
-    const payload=btoa(unescape(encodeURIComponent(JSON.stringify(args.length===1?args[0]:args)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    const named=method==='adminLogin'?{password:args[0]}:method==='getAdminState'?{token:args[0]}:method==='adminAction'?{token:args[0],name:args[1],payload:args[2]}:null;
+    const payload=btoa(unescape(encodeURIComponent(JSON.stringify(named||(args.length===1?args[0]:args))))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
     script.src=`${base.replace(/\/$/,'')}?api=1&action=${encodeURIComponent(method)}&payload=${encodeURIComponent(payload)}&callback=${encodeURIComponent(cb)}&v=${Date.now()}`;
     script.onerror=()=>{cleanup();bad(new Error('Could not reach the backend.'));};
     document.body.appendChild(script);
@@ -350,9 +352,15 @@ async function submitSharedOrder(){const u=me();const t=qrTable;if(!u||!t||order
 
 function openAdmin(){go('adminGate');}
 function renderAdminGate(){const input=document.getElementById('adminPin');input.value='';document.getElementById('adminError').classList.add('hidden');bindAdminEnter();setTimeout(()=>input.focus(),0);}
-async function unlockAdmin(){const pass=document.getElementById('adminPin').value.trim();if(!pass){toast('Enter the admin password.','error');return;}try{const out=await callServer('adminLogin',[pass],'Signing in…');adminToken=out.token;sessionStorage.setItem(CONFIG.ADMIN_SESSION_KEY,adminToken);await refreshAdmin();go('admin');}catch(e){document.getElementById('adminError').textContent=String(e.message||e);document.getElementById('adminError').classList.remove('hidden');setBusy(false);}}
+async function unlockAdmin(){const pass=document.getElementById('adminPin').value.trim();const errEl=document.getElementById('adminError');if(!pass){toast('Enter the admin password.','error');return;}
+  try{const out=await callServer('adminLogin',[pass],'Signing in…');adminToken=out.token;sessionStorage.setItem(CONFIG.ADMIN_SESSION_KEY,adminToken);await refreshAdmin();go('admin');}
+  catch(e){let msg=String(e.message||e);
+    try{const h=await callServer('backendHealth',[],'Checking backend…');
+      if(h&&h.buildId&&CONFIG.EXPECTED_BUILD&&h.buildId!==CONFIG.EXPECTED_BUILD)msg='Backend is OUTDATED (running '+h.buildId+', expected '+CONFIG.EXPECTED_BUILD+'). In Apps Script: Deploy → Manage deployments → Edit → Version: New version → Deploy.';
+    }catch(_){msg='Backend is outdated or unreachable (no backendHealth response). Redeploy the latest Code.gs as a New version of this web app. Original error: '+msg;}
+    errEl.textContent=msg;errEl.classList.remove('hidden');setBusy(false);}}
 function bindAdminEnter(){const input=document.getElementById('adminPin');if(!input||input.dataset.enterBound==='1')return;input.dataset.enterBound='1';input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();unlockAdmin();}});input.addEventListener('input',()=>document.getElementById('adminError').classList.add('hidden'));}
-async function checkBackendHealth(){const el=document.getElementById('adminHealthStatus');if(!el)return;el.textContent='Checking…';try{const h=await callServer('backendHealth',[],'Checking backend…');el.textContent=`Connected • ${h.buildId} • Admin configured: ${h.adminConfigured?'YES':'NO'}`;}catch(e){el.textContent='Backend check failed. '+String(e.message||e);}}
+async function checkBackendHealth(){const el=document.getElementById('adminHealthStatus');if(!el)return;el.textContent='Checking…';try{const h=await callServer('backendHealth',[],'Checking backend…');const stale=h.buildId!==CONFIG.EXPECTED_BUILD;el.textContent=`Connected • ${h.buildId}${stale?' (OUTDATED — expected '+CONFIG.EXPECTED_BUILD+')':' (up to date)'} • Admin: ${h.adminConfigured?'YES':'NO'} • Sheet: ${h.sheetAccessible?'OK':'NOT READY'}`;}catch(e){el.textContent='Backend check failed. '+String(e.message||e);}}
 function adminExit(){adminToken=null;sessionStorage.removeItem(CONFIG.ADMIN_SESSION_KEY);clearInterval(refreshTimer);go('home');}
 async function refreshAdmin(){if(!adminToken&&!CONFIG.DEMO_MODE)return;try{const data=await callServer('getAdminState',[adminToken],'Refreshing dashboard…');normalizeState(data);renderAdmin();}catch(e){if(String(e.message||e).toLowerCase().includes('expired')){adminToken=null;sessionStorage.removeItem(CONFIG.ADMIN_SESSION_KEY);go('adminGate');}else fail(e);}}
 function startAdminAutoRefresh(){clearInterval(refreshTimer);refreshTimer=setInterval(()=>{if(currentView==='admin'&&adminToken)refreshAdminQuiet();},CONFIG.AUTO_REFRESH_MS);}
